@@ -8,10 +8,10 @@ import { NavButtons } from '../../components/NavButtons';
 const Form = t.form.Form;
 
 class BasicInfoForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      value: null
+      value: this.props.value
     };
   }
 
@@ -54,6 +54,7 @@ class BasicInfoForm extends Component {
           <NavButtons
             singleNav
             onNext={this.onFormSubmit.bind(this)}
+            navigation={this.props.navigation}
           />
         </CardSection>
       </View>

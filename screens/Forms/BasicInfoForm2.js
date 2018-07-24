@@ -9,10 +9,10 @@ import { NavButtons } from '../../components/NavButtons';
 const Form = t.form.Form;
 
 class BasicInfoForm2 extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      value: null
+      value: this.props.value
     };
   }
 
@@ -51,7 +51,7 @@ class BasicInfoForm2 extends Component {
         <CardSection>
           <NavButtons
             onNext={this.onFormSubmit.bind(this)}
-            onBack={this.printState}
+            onBack={this.props.onBack}
           />
         </CardSection>
       </View>

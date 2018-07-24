@@ -45,7 +45,7 @@ class ArticDumpTruckForm extends Component {
     this.state = {
       step: 1
     };
-    this.goToNext = this.goToNext.bind(this);
+    // this.goToNext = this.goToNext.bind(this);
   }
 
   componentWillMount() {
@@ -72,6 +72,15 @@ class ArticDumpTruckForm extends Component {
     }
   }
 
+  goBack() {
+    console.log('goBack');
+    console.log(this.state);
+    const { step } = this.state;
+    if (step > 0) {
+      this.setState({ step: step - 1 });
+    }
+  }
+
 
   render() {
     switch (this.state.step) {
@@ -79,16 +88,27 @@ class ArticDumpTruckForm extends Component {
         return (
           <View style={styles.form}>
             <BasicInfoForm
+              value={this.state.formData}
               customers={this.props.customers}
               onSubmit={this.onSubmit}
-              singleNav
             />
           </View>
         );
       case 2:
-        return <BasicInfoForm2 onSubmit={this.onSubmit} />;
+        return (
+          <BasicInfoForm2
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
       case 3:
-        return <BasicInfoForm2 onSubmit={this.onSubmit} />;
+        return (
+          <BasicInfoForm2
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
       case 4:
         return <BasicInfoForm2 onSubmit={this.onSubmit} />;
       default:
