@@ -8,7 +8,8 @@ import {
 from 'react-navigation';
 import {
   View,
-  SafeAreaView
+  SafeAreaView,
+  StyleSheet
 } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -102,10 +103,19 @@ class App extends React.Component {
 
     return (
       <Provider store={store}>
-        <MainNavigator />
+        <MainNavigator style={styles.rootStyle} />
       </Provider>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  rootStyle: {
+    flex: 1,
+    backgroundColor: '#197392',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
+});
 
 export default App;

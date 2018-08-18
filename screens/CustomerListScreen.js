@@ -6,7 +6,10 @@ import {
   Image,
   ListView
 } from 'react-native';
-import { customersFetch } from '../actions';
+import {
+  customersFetch,
+  customerFetch
+ } from '../actions';
 import ListItem from '../components/ListItem';
 
 class CustomerListScreen extends Component {
@@ -44,6 +47,12 @@ class CustomerListScreen extends Component {
     this.createDataSource(nextProps);
   }
 
+  onRowPress = (customer) => {
+    const { uid, name } = customer;
+    this.props.customerFetch({ uid });
+    this.props.navigation.push('Customer', { uid, name });
+  }
+
   createDataSource({ customers }) {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
@@ -53,7 +62,12 @@ class CustomerListScreen extends Component {
   }
 
   renderRow(customer) {
-    return <ListItem customer={customer} />;
+    return (
+      <ListItem
+      title={customer.name}
+      onRowPress={() => this.onRowPress(customer)}
+      />
+  );
   }
 
   render() {
@@ -61,19 +75,17 @@ class CustomerListScreen extends Component {
       <ListView
         enableEmptySections
         dataSource={this.dataSource}
-        renderRow={this.renderRow}
+        renderRow={this.renderRow.bind(this)}
       />
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   const customers = _.map(state.customerList, (val, uid) => {
     return { ...val, uid }; // { name: 'S', uid: 'ha98e9n'}
   });
-  console.log(customers);
   return { customers };
 };
 
-export default connect(mapStateToProps, {customersFetch})(CustomerListScreen);
+export default connect(mapStateToProps, { customersFetch, customerFetch })(CustomerListScreen);

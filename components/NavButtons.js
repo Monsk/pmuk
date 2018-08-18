@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Button } from './common';
 
-const NavButtons = ({ onNext, onBack, singleNav }) => {
+const NavButtons = ({ onNext, onBack, singleNav, submit }) => {
     if (singleNav) {
       return (
         <Button onPress={onNext}>
@@ -17,7 +17,7 @@ const NavButtons = ({ onNext, onBack, singleNav }) => {
           Back
         </Button>
         <Button onPress={onNext}>
-          Next
+          {submit ? 'Submit' : 'Next'}
         </Button>
       </View>
     );
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   buttons: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   }
 });
 

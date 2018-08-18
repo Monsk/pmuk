@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import BasicInfoForm from './BasicInfoForm';
 import BasicInfoForm2 from './BasicInfoForm2';
+import ArticDumpTruck1 from './ArticDumpTruck1';
+import ArticDumpTruck2 from './ArticDumpTruck2';
 
 import { customersFetch, formUpdate } from '../../actions';
 
@@ -60,6 +62,10 @@ class ArticDumpTruckForm extends Component {
     this.goToNext();
   }
 
+  submitToServer = (formData) => {
+    console.log(formData);
+  }
+
   goToNext() {
     const { step } = this.state;
     if (step !== 6) {
@@ -104,13 +110,20 @@ class ArticDumpTruckForm extends Component {
         );
       case 3:
         return (
-          <BasicInfoForm2
+          <ArticDumpTruck1
+            value={this.state.formData}
             onSubmit={this.onSubmit}
             onBack={this.goBack.bind(this)}
           />
         );
       case 4:
-        return <BasicInfoForm2 onSubmit={this.onSubmit} />;
+        return (
+          <ArticDumpTruck2
+            value={this.state.formData}
+            onSubmit={this.submitToServer}
+            onBack={this.goBack.bind(this)}
+          />
+        );
       default:
         console.log('default page');
       }
