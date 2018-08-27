@@ -23,6 +23,7 @@ import CustomerScreen from './screens/CustomerScreen';
 import CustomerEditScreen from './screens/CustomerEditScreen';
 import CustomerAddScreen from './screens/CustomerAddScreen';
 import ArticDumpTruckForm from './screens/Forms/ArticDumpTruckForm';
+import Profile from './screens/Profile';
 
 class App extends React.Component {
   componentWillMount() {
@@ -65,6 +66,19 @@ class App extends React.Component {
               Customer: CustomerScreen,
               CustomerAdd: CustomerAddScreen,
               CustomerEdit: CustomerEditScreen,
+            }, {
+              navigationOptions: {
+                headerStyle: {
+                  backgroundColor: '#22252C',
+                },
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                },
+              },
+            }),
+            Profile: createStackNavigator({
+              Profile
             }, {
               navigationOptions: {
                 headerStyle: {
