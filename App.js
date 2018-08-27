@@ -23,7 +23,7 @@ import CustomerScreen from './screens/CustomerScreen';
 import CustomerEditScreen from './screens/CustomerEditScreen';
 import CustomerAddScreen from './screens/CustomerAddScreen';
 import ArticDumpTruckForm from './screens/Forms/ArticDumpTruckForm';
-import Profile from './screens/Profile';
+import Settings from './screens/Settings';
 
 class App extends React.Component {
   componentWillMount() {
@@ -79,8 +79,8 @@ class App extends React.Component {
       navigationOptions: headerOptions
     });
 
-    const ProfileStack = createStackNavigator({
-      Profile
+    const SettingsStack = createStackNavigator({
+      Settings
     }, {
       navigationOptions: headerOptions
     });
@@ -92,19 +92,18 @@ class App extends React.Component {
           screen: createBottomTabNavigator({
             Home: HomeStack,
             Customers: CustomerStack,
-            Profile: ProfileStack
-          },
-          {
-            initialRouteName: 'Home'
+            Settings: SettingsStack
           }, {
           navigationOptions: ({ navigation }) => ({
             tabBarIcon: ({ focused, tintColor }) => {
               const { routeName } = navigation.state;
               let iconName;
               if (routeName === 'Home') {
-                iconName = `ios-information-circle${focused ? '' : '-outline'}`;
+                iconName = `ios-home${focused ? '' : '-outline'}`;
               } else if (routeName === 'Customers') {
-                iconName = `ios-options${focused ? '' : '-outline'}`;
+                iconName = `ios-people${focused ? '' : '-outline'}`;
+              } else if (routeName === 'Settings') {
+                iconName = `ios-settings${focused ? '' : '-outline'}`;
               }
 
               // You can return any component that you like here! We usually use an
@@ -113,10 +112,15 @@ class App extends React.Component {
             },
           }),
           tabBarOptions: {
-            activeTintColor: 'tomato',
+            activeTintColor: '#FCD207',
             inactiveTintColor: 'gray',
+            style: {
+              backgroundColor: '#22252C'
+            }
           },
-        }
+        }, {
+            initialRouteName: 'Home'
+          },
         ),
 
         }

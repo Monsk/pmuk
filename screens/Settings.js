@@ -6,12 +6,12 @@ import {
 } from 'react-native';
 import LogoutButton from '../components/LogoutButton';
 
-// TODO: Pull profile name from user
+// TODO: Pull name from user
 
-class Profile extends Component {
+class Settings extends Component {
   static navigationOptions = () => {
     return ({
-      title: 'Profile',
+      title: 'Settings',
     });
   };
 
@@ -44,4 +44,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Profile;
+export default Settings;
