@@ -18,7 +18,7 @@ export default class Loading extends React.Component {
     return (
       <View style={styles.container}>
         <ActivityIndicator size="large" color="#FCD207" />
-        <Text>Loading</Text>
+        <Text style={styles.loadingText}>Loading</Text>
       </View>
     );
   }
@@ -29,5 +29,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#22252C'
+  },
+  loadingText: {
+    marginTop: 10,
+    color: '#FCD207'
   }
 });

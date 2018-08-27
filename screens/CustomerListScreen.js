@@ -2,9 +2,12 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
+  View,
   TouchableOpacity,
   Image,
-  ListView
+  ListView,
+  ActivityIndicator,
+  StyleSheet
 } from 'react-native';
 import {
   customersFetch,
@@ -28,6 +31,13 @@ class CustomerListScreen extends Component {
     };
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+    };
+  }
+
   componentWillMount() {
     this.props.customersFetch();
     this.createDataSource(this.props);
@@ -37,6 +47,9 @@ class CustomerListScreen extends Component {
     // nextProps are the next set of props that this component
     // will be rendered with. this.props is still the old set of props
     this.createDataSource(nextProps);
+    this.setState({
+      loading: false
+    });
   }
 
   onRowPress = (customer) => {
@@ -62,16 +75,35 @@ class CustomerListScreen extends Component {
   );
   }
 
+  renderSpinner() {
+    if (this.state.loading) {
+      return (
+        <View style={styles.container}>
+          <ActivityIndicator size="large" />
+        </View>
+      );
+    }
+  }
+
   render() {
     return (
-      <ListView
-        enableEmptySections
-        dataSource={this.dataSource}
-        renderRow={this.renderRow.bind(this)}
-      />
+      <View>
+        {this.renderSpinner()}
+        <ListView
+          enableEmptySections
+          dataSource={this.dataSource}
+          renderRow={this.renderRow.bind(this)}
+        />
+      </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 20
+  }
+});
 
 const mapStateToProps = (state) => {
   const customers = _.map(state.customerList, (val, uid) => {
