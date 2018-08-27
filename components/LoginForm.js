@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import firebase from 'firebase';
 import { withNavigation } from 'react-navigation';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Card, CardSection, Input, Button, Spinner } from './common';
 
 class LoginForm extends Component {
-  // componentWillMount() {
-  //   if (firebase.auth().currentUser) {
-  //     this.props.navigation.navigate('Home');
-  //   }
-  // }
 
   onEmailChange(text) {
     this.props.emailChanged(text);
@@ -23,7 +17,6 @@ class LoginForm extends Component {
 
   onButtonPress() {
     const { email, password } = this.props;
-
     this.props.loginUser({ email, password });
   }
 

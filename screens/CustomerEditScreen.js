@@ -51,6 +51,8 @@ class CustomerEditForm extends Component {
   }
 
   render() {
+    console.log(this.props);
+
     return (
       <Card>
         <CustomerForm {...this.props} />
@@ -65,6 +67,7 @@ class CustomerEditForm extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   const customer = state.currentCustomer;
   return customer;
 };

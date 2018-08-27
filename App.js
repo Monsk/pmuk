@@ -1,23 +1,21 @@
 import React from 'react';
 import {
   createBottomTabNavigator,
-  createDrawerNavigator,
   createStackNavigator,
-  DrawerItems
+  createSwitchNavigator
 }
 from 'react-navigation';
 import {
-  View,
-  SafeAreaView,
   StyleSheet
 } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import reducers from './reducers';
-import LogoutButton from './components/LogoutButton';
 
+import Loading from './screens/Loading';
 import AuthScreen from './screens/AuthScreen';
 import HomeScreen from './screens/HomeScreen';
 import CustomerListScreen from './screens/CustomerListScreen';
@@ -43,17 +41,18 @@ class App extends React.Component {
   render() {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
-    const MainNavigator = createBottomTabNavigator({
+    const MainNavigator = createSwitchNavigator({
+        Loading,
         Auth: AuthScreen,
         main: {
-          screen: createDrawerNavigator({
+          screen: createBottomTabNavigator({
             Home: createStackNavigator({
               HomeScreen,
               ArticDumpTruckForm
             }, {
               navigationOptions: {
                 headerStyle: {
-                  backgroundColor: '#197392',
+                  backgroundColor: '#22252C',
                 },
                 headerTintColor: '#fff',
                 headerTitleStyle: {
@@ -69,7 +68,7 @@ class App extends React.Component {
             }, {
               navigationOptions: {
                 headerStyle: {
-                  backgroundColor: '#197392',
+                  backgroundColor: '#22252C',
                 },
                 headerTintColor: '#fff',
                 headerTitleStyle: {
@@ -78,24 +77,44 @@ class App extends React.Component {
               },
             })
           },
-          {
-            contentComponent:(props) => (
-                <View style={{ flex: 1 }}>
-                    <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
-                        <DrawerItems {...props} />
-                    </SafeAreaView>
-                    <View style={{ position: 'absolute', bottom: 0, left: 0 }} >
-                      <LogoutButton />
-                    </View>
-                </View>
-            ),
-            drawerOpenRoute: 'DrawerOpen',
-            drawerCloseRoute: 'DrawerClose',
-            drawerToggleRoute: 'DrawerToggle'
-          },
+          // {
+          //   contentComponent:(props) => (
+          //       <View style={{ flex: 1 }}>
+          //           <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
+          //               <DrawerItems {...props} />
+          //           </SafeAreaView>
+          //           <View style={{ position: 'absolute', bottom: 0, left: 0 }} >
+          //             <LogoutButton />
+          //           </View>
+          //       </View>
+          //   ),
+          //   drawerOpenRoute: 'DrawerOpen',
+          //   drawerCloseRoute: 'DrawerClose',
+          //   drawerToggleRoute: 'DrawerToggle'
+          // },
           {
             initialRouteName: 'Home'
-          }
+          }, {
+          navigationOptions: ({ navigation }) => ({
+            tabBarIcon: ({ focused, tintColor }) => {
+              const { routeName } = navigation.state;
+              let iconName;
+              if (routeName === 'Home') {
+                iconName = `ios-information-circle${focused ? '' : '-outline'}`;
+              } else if (routeName === 'Customers') {
+                iconName = `ios-options${focused ? '' : '-outline'}`;
+              }
+
+              // You can return any component that you like here! We usually use an
+              // icon component from react-native-vector-icons
+              return <Ionicons name={iconName} size={25} color={tintColor} />;
+            },
+          }),
+          tabBarOptions: {
+            activeTintColor: 'tomato',
+            inactiveTintColor: 'gray',
+          },
+        }
         ),
 
         }

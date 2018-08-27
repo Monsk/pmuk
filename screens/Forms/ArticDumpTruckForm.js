@@ -22,7 +22,7 @@ class ArticDumpTruckForm extends Component {
       'Quit Report?',
       'Are you sure you want to abandon this report?',
       [
-        { text: 'OK', onPress: () => navigation.push('HomeScreen') },
+        { text: 'OK', onPress: () => navigation.navigate('HomeScreen') },
         { text: 'Cancel', style: 'cancel' },
       ]
     );

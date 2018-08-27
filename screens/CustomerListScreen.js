@@ -17,14 +17,6 @@ class CustomerListScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: 'Customers',
-      headerLeft: (
-        <TouchableOpacity onPress={() => navigation.openDrawer()}>
-          <Image
-            source={require('../assets/menu.png')}
-            style={{ width: 30, height: 30, marginLeft: 10 }}
-          />
-        </TouchableOpacity>
-      ),
       headerRight: (
         <TouchableOpacity onPress={() => navigation.push('CustomerAdd')}>
           <Image

@@ -1,18 +1,18 @@
 {
   "expo": {
     "name": "pmukapp",
-    "description": "This project is really great.",
+    "description": "Plant Machinery UK mobile app",
     "slug": "pmukapp",
     "privacy": "public",
     "sdkVersion": "27.0.0",
     "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/pmuk_icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/pmuk_splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#22252C"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -21,7 +21,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.simonhunter.pmukapp"
+    },
+    "android": {
+      "package": "com.simonhunter.pmukapp"
     }
   }
 }

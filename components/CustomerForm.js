@@ -22,7 +22,7 @@ class CustomerForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { name } = state.currentCustomer;
+  const { name } = state.customerForm;
 
   return { name };
 };

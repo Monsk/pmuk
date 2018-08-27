@@ -16,7 +16,7 @@ class AuthScreen extends Component {
 const styles = {
   loginForm: {
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
   }
 };
 

@@ -11,17 +11,9 @@ import ListItem from '../components/ListItem';
 
 
 class HomeScreen extends Component {
-  static navigationOptions = (props) => {
+  static navigationOptions = () => {
     return ({
       title: 'Home',
-      headerLeft: (
-        <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
-          <Image
-            source={require('../assets/menu.png')}
-            style={{ width: 30, height: 30, marginLeft: 10 }}
-          />
-        </TouchableOpacity>
-      ),
     });
   };
 
