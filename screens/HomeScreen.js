@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  TouchableOpacity,
-  Image,
   StyleSheet,
-  ScrollView
+  ScrollView,
+  StatusBar
 } from 'react-native';
 import ListItem from '../components/ListItem';
 
@@ -39,6 +38,9 @@ class HomeScreen extends Component {
           <Text style={styles.h1}>Start a new report:</Text>
         </View>
         {listItems}
+        <StatusBar
+          barStyle="light-content"
+        />
       </ScrollView>
   );
 }

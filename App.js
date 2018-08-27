@@ -6,7 +6,7 @@ import {
 }
 from 'react-navigation';
 import {
-  StyleSheet
+  StyleSheet,
 } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
