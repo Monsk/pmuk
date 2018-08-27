@@ -42,70 +42,58 @@ class App extends React.Component {
   render() {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
+    const headerOptions = {
+      headerStyle: {
+        backgroundColor: '#22252C',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    };
+
+    const HomeStack = createStackNavigator({
+      HomeScreen,
+      ArticDumpTruckForm
+    }, {
+      navigationOptions: headerOptions
+    });
+
+    HomeStack.navigationOptions = ({ navigation }) => {
+      let tabBarVisible = true;
+      if (navigation.state.index > 0) {
+        tabBarVisible = false;
+      }
+
+      return {
+        tabBarVisible,
+      };
+    };
+
+    const CustomerStack = createStackNavigator({
+      CustomerList: CustomerListScreen,
+      Customer: CustomerScreen,
+      CustomerAdd: CustomerAddScreen,
+      CustomerEdit: CustomerEditScreen,
+    }, {
+      navigationOptions: headerOptions
+    });
+
+    const ProfileStack = createStackNavigator({
+      Profile
+    }, {
+      navigationOptions: headerOptions
+    });
+
     const MainNavigator = createSwitchNavigator({
         Loading,
         Auth: AuthScreen,
         main: {
           screen: createBottomTabNavigator({
-            Home: createStackNavigator({
-              HomeScreen,
-              ArticDumpTruckForm
-            }, {
-              navigationOptions: {
-                headerStyle: {
-                  backgroundColor: '#22252C',
-                },
-                headerTintColor: '#fff',
-                headerTitleStyle: {
-                  fontWeight: 'bold',
-                },
-              },
-            }),
-            Customers: createStackNavigator({
-              CustomerList: CustomerListScreen,
-              Customer: CustomerScreen,
-              CustomerAdd: CustomerAddScreen,
-              CustomerEdit: CustomerEditScreen,
-            }, {
-              navigationOptions: {
-                headerStyle: {
-                  backgroundColor: '#22252C',
-                },
-                headerTintColor: '#fff',
-                headerTitleStyle: {
-                  fontWeight: 'bold',
-                },
-              },
-            }),
-            Profile: createStackNavigator({
-              Profile
-            }, {
-              navigationOptions: {
-                headerStyle: {
-                  backgroundColor: '#22252C',
-                },
-                headerTintColor: '#fff',
-                headerTitleStyle: {
-                  fontWeight: 'bold',
-                },
-              },
-            })
+            Home: HomeStack,
+            Customers: CustomerStack,
+            Profile: ProfileStack
           },
-          // {
-          //   contentComponent:(props) => (
-          //       <View style={{ flex: 1 }}>
-          //           <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
-          //               <DrawerItems {...props} />
-          //           </SafeAreaView>
-          //           <View style={{ position: 'absolute', bottom: 0, left: 0 }} >
-          //             <LogoutButton />
-          //           </View>
-          //       </View>
-          //   ),
-          //   drawerOpenRoute: 'DrawerOpen',
-          //   drawerCloseRoute: 'DrawerClose',
-          //   drawerToggleRoute: 'DrawerToggle'
-          // },
           {
             initialRouteName: 'Home'
           }, {
