@@ -87,7 +87,7 @@ class CustomerListScreen extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.page}>
         {this.renderSpinner()}
         <ListView
           enableEmptySections
@@ -100,6 +100,9 @@ class CustomerListScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+  page: {
+    flex: 1
+  },
   container: {
     marginTop: 20
   }
