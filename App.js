@@ -112,7 +112,7 @@ class App extends React.Component {
             },
           }),
           tabBarOptions: {
-            activeTintColor: '#FCD207',
+            activeTintColor: '#fff',
             inactiveTintColor: 'gray',
             style: {
               backgroundColor: '#22252C'
