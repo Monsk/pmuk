@@ -13,4 +13,5 @@ export const CUSTOMER_FETCH_SUCCESS = 'customer_fetch_success';
 export const CUSTOMER_SAVE_SUCCESS = 'customer_save_success';
 export const CUSTOMER_DELETED = 'customer_deleted';
 
-export const FORM_UPDATE = 'form_update';
+export const FORM_SUBMIT = 'form_submit';
+export const FORM_SUBMIT_FAIL = 'form_submit_fail';

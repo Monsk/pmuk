@@ -1,17 +1,16 @@
 import {
-  FORM_UPDATE
+  FORM_SUBMIT,
+  FORM_SUBMIT_FAIL,
 } from '../actions/types';
 
-const INITIAL_STATE = {
-  formName: ''
-};
+const INITIAL_STATE = {};
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case FORM_UPDATE:
-      console.log({ ...state, [action.payload.formName]: action.payload.value });
-      return { ...state, [action.payload.formName]: action.payload.value };
-      // ^ [] = key interpolation (ES6)
+    case FORM_SUBMIT:
+      return INITIAL_STATE;
+    case FORM_SUBMIT_FAIL:
+      return { ...state, error: 'Failed to create customer' };
     default:
       return state;
   }

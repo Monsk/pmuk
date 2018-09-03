@@ -13,7 +13,7 @@ import BasicInfoForm2 from './BasicInfoForm2';
 import ArticDumpTruck1 from './ArticDumpTruck1';
 import ArticDumpTruck2 from './ArticDumpTruck2';
 
-import { customersFetch, formUpdate } from '../../actions';
+import { customersFetch, formSubmit } from '../../actions';
 
 class ArticDumpTruckForm extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -58,12 +58,7 @@ class ArticDumpTruckForm extends Component {
     this.setState(prevState => ({
       formData: { ...prevState.formData,
                   ...formData }
-    }));
-    this.goToNext();
-  }
-
-  submitToServer = (formData) => {
-    console.log(formData);
+    }), this.goToNext());
   }
 
   goToNext() {
@@ -71,7 +66,7 @@ class ArticDumpTruckForm extends Component {
     if (step !== 4) {
       this.setState({ step: step + 1 });
     } else {
-      this.submitToServer({
+      this.props.formSubmit({
         formType: 'ArcticDumpTruck',
         formData: this.state.formData,
       });
@@ -151,4 +146,4 @@ const mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps, { customersFetch, formUpdate })(ArticDumpTruckForm);
+export default connect(mapStateToProps, { customersFetch, formSubmit })(ArticDumpTruckForm);
