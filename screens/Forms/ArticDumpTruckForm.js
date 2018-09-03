@@ -68,19 +68,17 @@ class ArticDumpTruckForm extends Component {
 
   goToNext() {
     const { step } = this.state;
-    if (step !== 6) {
+    if (step !== 4) {
       this.setState({ step: step + 1 });
-      console.log(this.state);
     } else {
-      alert('Submitting');
-      // BUT
-      // how to access all the fields from here?
+      this.submitToServer({
+        formType: 'ArcticDumpTruck',
+        formData: this.state.formData,
+      });
     }
   }
 
   goBack() {
-    console.log('goBack');
-    console.log(this.state);
     const { step } = this.state;
     if (step > 0) {
       this.setState({ step: step - 1 });
@@ -120,7 +118,7 @@ class ArticDumpTruckForm extends Component {
         return (
           <ArticDumpTruck2
             value={this.state.formData}
-            onSubmit={this.submitToServer}
+            onSubmit={this.onSubmit}
             onBack={this.goBack.bind(this)}
           />
         );

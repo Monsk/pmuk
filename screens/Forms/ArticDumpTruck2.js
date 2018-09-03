@@ -13,37 +13,33 @@ class ArticDumpTruck2 extends Component {
     super(props);
     this.state = {
       value: {
-        covers1: true,
-        covers2: false,
-        windows1: false,
-        windows2: false,
+        covers: {
+          beltGuards: false,
+          machineGuards: false,
+        },
+        windows: {
+          windscreen: false,
+          cabWindows: false,
+        },
         ...this.props.value
       }
     };
   }
 
-  onFormSubmit() {
-    const { onSubmit } = this.props;
-    const value = this.refs.form.getValue();
-    if (value) {
-      onSubmit(this.state.value);
-    }
-  }
-
-  renderFormA() {
+  renderCoversForm() {
     return (
       t.struct({
-        covers1: t.Boolean,
-        covers2: t.Boolean,
+        beltGuards: t.Boolean,
+        machineGuards: t.Boolean,
       })
     );
   }
 
-  renderFormB() {
+  renderWindowsForm() {
     return (
       t.struct({
-        windows1: t.Boolean,
-        windows2: t.Boolean,
+        windscreen: t.Boolean,
+        cabWindows: t.Boolean,
       })
     );
   }
@@ -51,16 +47,16 @@ class ArticDumpTruck2 extends Component {
   render() {
     const options = {
     fields: {
-      covers1: {
+      beltGuards: {
         label: 'Fan and drive belt guards in position, secure and free from damage'
       },
-      covers2: {
+      machineGuards: {
         label: 'All machine panels and guards in position, secure and free from damage'
       },
-      windows1: {
+      windscreen: {
         label: 'Windscreen free from cracks or scratches which obscure operator’s field of view'
       },
-      windows2: {
+      cabWindows: {
         label: 'Other cab windows free from damage'
       },
       }
@@ -74,11 +70,13 @@ class ArticDumpTruck2 extends Component {
           </View>
           <View style={styles.container}>
             <Form
-              ref="formA"
-              value={this.state.value}
-              type={this.renderFormA()}
+              ref="covers"
+              value={this.state.value.covers}
+              type={this.renderCoversForm()}
               options={options}
-              onChange={value => this.setState({ value })}
+              onChange={obj => this.setState({
+                value: { ...this.state.value, covers: { ...obj } } }
+              )}
             />
           </View>
           <View style={styles.container}>
@@ -86,18 +84,20 @@ class ArticDumpTruck2 extends Component {
           </View>
           <View style={styles.container}>
             <Form
-              ref="formB"
-              value={this.state.value}
-              type={this.renderFormB()}
+              ref="windows"
+              value={this.state.value.windows}
+              type={this.renderWindowsForm()}
               options={options}
-              onChange={value => this.setState({ value })}
+              onChange={obj => this.setState({
+                value: { ...this.state.value, windows: { ...obj } } }
+              )}
             />
           </View>
         </KeyboardAwareScrollView>
         <CardSection>
           <NavButtons
             submit
-            onNext={this.onFormSubmit.bind(this)}
+            onNext={() => this.props.onSubmit(this.state.value)}
             onBack={this.props.onBack}
           />
         </CardSection>

@@ -13,41 +13,37 @@ class ArticDumpTruck1 extends Component {
     super(props);
     this.state = {
       value: {
-        accessAndEgress1: false,
-        accessAndEgress2: false,
-        accessAndEgress3: false,
-        fluids1: false,
-        fluids2: false,
-        fluids3: false,
+        accessAndEgress: {
+          corrosion: false,
+          wear: false,
+          modification: false,
+        },
+        fluids: {
+          levels: false,
+          contamination: false,
+          upToDate: false,
+        },
         ...this.props.value
       }
     };
   }
 
-  onFormSubmit() {
-    const { onSubmit } = this.props;
-    const value = this.refs.form.getValue();
-    if (value) {
-      onSubmit(this.state.value);
-    }
-  }
-
-  renderFormA() {
+  renderAccessEgressForm() {
     return (
       t.struct({
-        accessAndEgress1: t.Boolean,
-        accessAndEgress2: t.Boolean,
-        accessAndEgress3: t.Boolean
+        corrosion: t.Boolean,
+        wear: t.Boolean,
+        modification: t.Boolean,
       })
     );
   }
 
-  renderFormB() {
+  renderFluidsForm() {
     return (
       t.struct({
-        fluids1: t.Boolean,
-        fluids2: t.Boolean,
-        fluids3: t.Boolean
+        levels: t.Boolean,
+        contamination: t.Boolean,
+        upToDate: t.Boolean,
       })
     );
   }
@@ -55,22 +51,22 @@ class ArticDumpTruck1 extends Component {
   render() {
     const options = {
     fields: {
-      accessAndEgress1: {
+      corrosion: {
         label: 'Access steps and handrails secure and free from damage and excessive corrosion'
       },
-      accessAndEgress2: {
+      wear: {
         label: 'Treads on access steps free from excessive wear'
       },
-      accessAndEgress3: {
+      modification: {
         label: 'Access steps or handrails free from any non-approved repair or modification'
       },
-      fluids1: {
+      levels: {
         label: 'Fluid levels correct, e.g. engine oil, coolant, hydraulic oil, etc.'
       },
-      fluids2: {
+      contamination: {
         label: 'Fluids for evidence of contamination, e.g. water in oil, etc.'
       },
-      fluids3: {
+      upToDate: {
         label: 'Machine servicing up to date'
       }
       }
@@ -84,11 +80,13 @@ class ArticDumpTruck1 extends Component {
           </View>
           <View style={styles.container}>
             <Form
-              ref="form"
-              value={this.state.value}
-              type={this.renderFormA()}
+              ref="accessAndEgress"
+              value={this.state.value.accessAndEgress}
+              type={this.renderAccessEgressForm()}
               options={options}
-              onChange={value => this.setState({ value })}
+              onChange={obj => this.setState({
+                value: { ...this.state.value, accessAndEgress: { ...obj } } }
+              )}
             />
           </View>
           <View style={styles.container}>
@@ -96,17 +94,19 @@ class ArticDumpTruck1 extends Component {
           </View>
           <View style={styles.container}>
             <Form
-              ref="form"
-              value={this.state.value}
-              type={this.renderFormB()}
+              ref="fluids"
+              value={this.state.value.fluids}
+              type={this.renderFluidsForm()}
               options={options}
-              onChange={value => this.setState({ value })}
+              onChange={obj => this.setState({
+                value: { ...this.state.value, fluids: { ...obj } } }
+              )}
             />
           </View>
         </KeyboardAwareScrollView>
         <CardSection>
           <NavButtons
-            onNext={this.onFormSubmit.bind(this)}
+            onNext={() => this.props.onSubmit(this.state.value)}
             onBack={this.props.onBack}
           />
         </CardSection>
