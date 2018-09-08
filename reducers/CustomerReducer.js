@@ -2,12 +2,13 @@ import {
   CUSTOMER_FETCH_SUCCESS,
   CLEAR_CUSTOMER,
   CUSTOMER_CREATE_FAIL,
-  CUSTOMER_DELETED
+  CUSTOMER_DELETED,
 } from '../actions/types';
 
 const INITIAL_STATE = {
   name: '',
-  uid: ''
+  uid: '',
+  forms: '',
 };
 
 export default (state = INITIAL_STATE, action) => {

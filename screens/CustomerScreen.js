@@ -1,6 +1,17 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ListView,
+  StyleSheet,
+} from 'react-native';
+import ListItem from '../components/ListItem';
+import { formTypes } from './Forms/formTypes';
+
 
 class CustomerScreen extends Component {
 
@@ -18,8 +29,21 @@ class CustomerScreen extends Component {
     };
   }
 
+  componentWillMount() {
+    this.createDataSource(this.props);
+  }
+
   componentDidMount() {
     this.updateTitle();
+  }
+
+  createDataSource({ forms }) {
+    console.log(forms);
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    });
+
+    this.dataSource = ds.cloneWithRows(forms);
   }
 
   checkForUpdate() {
@@ -34,23 +58,55 @@ class CustomerScreen extends Component {
     setParams({ title: name });
   }
 
+  renderRow(form) {
+    const selectedForm = formTypes.find(obj => obj.type === form.formType);
+
+    if (typeof selectedForm !== 'undefined') {
+      return (
+        <ListItem
+        title={selectedForm.title}
+        />
+      );
+    }
+    return null;
+  }
+
   render() {
     this.checkForUpdate();
     return (
       <View>
-        <Text>Report 1</Text>
-        <Text>Report 2</Text>
-        <Text>Report 3</Text>
-        <Text>Report 4</Text>
-        <Text>Report 5</Text>
+        <View style={styles.container}>
+          <Text style={styles.h1}>Saved reports</Text>
+        </View>
+        <ListView
+          enableEmptySections
+          dataSource={this.dataSource}
+          renderRow={this.renderRow.bind(this)}
+        />
       </View>
    );
  }
 }
 
+const styles = StyleSheet.create({
+  h1: {
+    fontSize: 24,
+    fontWeight: 'bold'
+  },
+  container: {
+    justifyContent: 'center',
+    paddingTop: 40,
+    padding: 20,
+    backgroundColor: '#ffffff',
+  },
+});
+
 const mapStateToProps = (state) => {
   const { currentCustomer } = state;
-  return { currentCustomer };
+  const forms = _.map(currentCustomer.forms, (val, uid) => {
+    return { ...val, uid }; // { name: 'S', uid: 'ha98e9n'}
+  });
+  return { currentCustomer, forms };
 };
 
 export default connect(mapStateToProps)(CustomerScreen);

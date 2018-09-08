@@ -6,7 +6,7 @@ import {
   CUSTOMER_SAVE_SUCCESS,
   CLEAR_CUSTOMER,
   CUSTOMER_CREATE_FAIL,
-  CUSTOMER_DELETED
+  CUSTOMER_DELETED,
 } from './types';
 
 export const customerUpdate = ({ prop, value }) => {

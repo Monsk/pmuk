@@ -12,6 +12,7 @@ import BasicInfoForm from './BasicInfoForm';
 import BasicInfoForm2 from './BasicInfoForm2';
 import ArticDumpTruck1 from './ArticDumpTruck1';
 import ArticDumpTruck2 from './ArticDumpTruck2';
+import ARTIC_DUMP_TRUCK from './formTypes';
 
 import { customersFetch, formSubmit } from '../../actions';
 
@@ -72,7 +73,7 @@ class ArticDumpTruckForm extends Component {
       this.setState({ step: step + 1 });
     } else {
       this.props.formSubmit({
-        formType: 'ArcticDumpTruck',
+        formType: ARTIC_DUMP_TRUCK,
         formData: this.state.formData,
       }, this.onSuccess);
     }

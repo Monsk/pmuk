@@ -6,9 +6,9 @@ import {
   ScrollView,
   StatusBar
 } from 'react-native';
-import firebase from 'firebase';
 
 import ListItem from '../components/ListItem';
+import { formTypes } from './Forms/formTypes';
 
 
 class HomeScreen extends Component {
@@ -19,15 +19,6 @@ class HomeScreen extends Component {
   };
 
   render() {
-    console.log(firebase.auth().currentUser.uid);
-
-    const formTypes = [
-      { type: 'ArticDumpTruckForm', title: 'Articulated Dump Truck' },
-      { type: 'Loadall', title: 'Loadall' },
-      { type: 'SelfErectingCrane', title: 'Self-erecting Crane' },
-      { type: 'QuickHitch', title: 'Quick Hitch' },
-    ];
-
     const listItems = formTypes.map((item, i) =>
       <ListItem
         key={i}
