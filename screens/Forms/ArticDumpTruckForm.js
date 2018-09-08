@@ -47,6 +47,7 @@ class ArticDumpTruckForm extends Component {
     this.state = {
       step: 1
     };
+    this.onSuccess = this.onSuccess.bind(this);
     // this.goToNext = this.goToNext.bind(this);
   }
 
@@ -58,7 +59,11 @@ class ArticDumpTruckForm extends Component {
     this.setState(prevState => ({
       formData: { ...prevState.formData,
                   ...formData }
-    }), this.goToNext());
+    }), this.goToNext);
+  }
+
+  onSuccess() {
+    this.props.navigation.navigate('HomeScreen');
   }
 
   goToNext() {
@@ -69,7 +74,7 @@ class ArticDumpTruckForm extends Component {
       this.props.formSubmit({
         formType: 'ArcticDumpTruck',
         formData: this.state.formData,
-      });
+      }, this.onSuccess);
     }
   }
 

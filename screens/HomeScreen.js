@@ -6,6 +6,8 @@ import {
   ScrollView,
   StatusBar
 } from 'react-native';
+import firebase from 'firebase';
+
 import ListItem from '../components/ListItem';
 
 
@@ -17,6 +19,8 @@ class HomeScreen extends Component {
   };
 
   render() {
+    console.log(firebase.auth().currentUser.uid);
+
     const formTypes = [
       { type: 'ArticDumpTruckForm', title: 'Articulated Dump Truck' },
       { type: 'Loadall', title: 'Loadall' },

@@ -4,9 +4,8 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
+import firebase from 'firebase';
 import LogoutButton from '../components/LogoutButton';
-
-// TODO: Pull name from user
 
 class Settings extends Component {
   static navigationOptions = () => {
@@ -16,9 +15,11 @@ class Settings extends Component {
   };
 
   render() {
+    const { email } = firebase.auth().currentUser;
+
     return (
       <View style={styles.container}>
-        <Text style={styles.h1}>Simon Hunter</Text>
+        <Text style={styles.h1}>{ email }</Text>
         <View style={styles.item}>
           <LogoutButton />
         </View>
