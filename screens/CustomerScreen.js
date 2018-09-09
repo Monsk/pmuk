@@ -10,6 +10,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import ListItem from '../components/ListItem';
+import { CardSection } from '../components/common/CardSection';
 import { formTypes } from './Forms/formTypes';
 
 
@@ -17,7 +18,6 @@ class CustomerScreen extends Component {
 
   static navigationOptions = ({ navigation }) => {
     return {
-      title: navigation.state.params.title,
       headerRight: (
         <TouchableOpacity onPress={() => navigation.push('CustomerEdit')}>
           <Image
@@ -33,12 +33,7 @@ class CustomerScreen extends Component {
     this.createDataSource(this.props);
   }
 
-  componentDidMount() {
-    this.updateTitle();
-  }
-
   createDataSource({ forms }) {
-    console.log(forms);
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
@@ -46,25 +41,15 @@ class CustomerScreen extends Component {
     this.dataSource = ds.cloneWithRows(forms);
   }
 
-  checkForUpdate() {
-    if (this.props.navigation.state.params.title !== this.props.currentCustomer.name) {
-      this.updateTitle();
-    }
-  }
-
-  updateTitle = () => {
-    const { name } = this.props.currentCustomer;
-    const { setParams } = this.props.navigation;
-    setParams({ title: name });
-  }
-
   renderRow(form) {
     const selectedForm = formTypes.find(obj => obj.type === form.formType);
+    const creationDate = new Date(form.createdAt);
 
     if (typeof selectedForm !== 'undefined') {
       return (
         <ListItem
         title={selectedForm.title}
+        subtitle={creationDate.toDateString()}
         />
       );
     }
@@ -72,11 +57,16 @@ class CustomerScreen extends Component {
   }
 
   render() {
-    this.checkForUpdate();
     return (
       <View>
         <View style={styles.container}>
-          <Text style={styles.h1}>Saved reports</Text>
+          <Text style={styles.h1}>{this.props.currentCustomer.name}</Text>
+          <CardSection>
+            <Text>Phone: +44 7827912961</Text>
+          </CardSection>
+        </View>
+        <View style={styles.container}>
+          <Text style={styles.h2}>Saved reports</Text>
         </View>
         <ListView
           enableEmptySections
@@ -91,6 +81,10 @@ class CustomerScreen extends Component {
 const styles = StyleSheet.create({
   h1: {
     fontSize: 24,
+    fontWeight: 'bold'
+  },
+  h2: {
+    fontSize: 20,
     fontWeight: 'bold'
   },
   container: {

@@ -7,14 +7,27 @@ import { CardSection } from './common';
 
 class ListItem extends Component {
 
+  renderSubtitle() {
+    if (this.props.subtitle) {
+      return (
+        <Text style={styles.subtitleStyle}>
+          {this.props.subtitle}
+        </Text>
+      );
+    }
+  }
+
   render() {
     return (
       <TouchableOpacity onPress={this.props.onRowPress}>
         <View>
           <CardSection>
-            <Text style={styles.titleStyle}>
-              {this.props.title}
-            </Text>
+            <View>
+              <Text style={styles.titleStyle}>
+                {this.props.title}
+              </Text>
+              {this.renderSubtitle()}
+            </View>
           </CardSection>
         </View>
       </TouchableOpacity>
@@ -26,8 +39,14 @@ class ListItem extends Component {
 const styles = {
   titleStyle: {
     fontSize: 18,
-    paddingLeft: 15
-  }
+    paddingLeft: 15,
+  },
+  subtitleStyle: {
+    fontSize: 14,
+    paddingTop: 5,
+    paddingLeft: 15,
+    color: '#606368',
+  },
 };
 
 
