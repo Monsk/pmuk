@@ -15,6 +15,14 @@ class BasicInfoForm extends Component {
     };
   }
 
+  onFormSubmit() {
+    const { onSubmit } = this.props;
+    const value = this.refs.BasicInfoForm.getValue();
+    if (value) {
+      onSubmit(this.state.value);
+    }
+  }
+
   renderForm() {
     const { customers } = this.props;
 
@@ -45,7 +53,7 @@ class BasicInfoForm extends Component {
         <CardSection>
           <NavButtons
             singleNav
-            onNext={() => this.props.onSubmit(this.state.value)}
+            onNext={this.onFormSubmit.bind(this)}
             navigation={this.props.navigation}
           />
         </CardSection>

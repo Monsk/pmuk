@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   View,
+  ScrollView,
   Text,
   TouchableOpacity,
   Image,
@@ -58,7 +59,7 @@ class CustomerScreen extends Component {
 
   render() {
     return (
-      <View>
+      <ScrollView stickyHeaderIndices={[0]}>
         <View style={styles.container}>
           <Text style={styles.h1}>{this.props.currentCustomer.name}</Text>
           <CardSection>
@@ -73,7 +74,7 @@ class CustomerScreen extends Component {
           dataSource={this.dataSource}
           renderRow={this.renderRow.bind(this)}
         />
-      </View>
+    </ScrollView>
    );
  }
 }
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   h2: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold'
   },
   container: {

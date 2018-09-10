@@ -8,13 +8,15 @@ import {
   Image,
   Alert
 } from 'react-native';
-import BasicInfoForm from './BasicInfoForm';
-import BasicInfoForm2 from './BasicInfoForm2';
+import BasicInfoForm from '../BasicInfoForm';
+import BasicInfoForm2 from '../BasicInfoForm2';
 import ArticDumpTruck1 from './ArticDumpTruck1';
 import ArticDumpTruck2 from './ArticDumpTruck2';
-import ARTIC_DUMP_TRUCK from './formTypes';
+import ArticDumpTruck3 from './ArticDumpTruck3';
+import ArticDumpTruck4 from './ArticDumpTruck4';
+import { ARTIC_DUMP_TRUCK } from '../formTypes';
 
-import { customersFetch, formSubmit } from '../../actions';
+import { customersFetch, formSubmit } from '../../../actions';
 
 class ArticDumpTruckForm extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -35,7 +37,7 @@ class ArticDumpTruckForm extends Component {
       headerRight: (
         <TouchableOpacity onPress={() => exitAlert()}>
           <Image
-            source={require('../../assets/clear.png')}
+            source={require('../../../assets/clear.png')}
             style={{ width: 30, height: 30, marginRight: 10 }}
           />
         </TouchableOpacity>
@@ -69,8 +71,9 @@ class ArticDumpTruckForm extends Component {
 
   goToNext() {
     const { step } = this.state;
-    if (step !== 4) {
+    if (step !== 6) {
       this.setState({ step: step + 1 });
+      console.log(this.state);
     } else {
       this.props.formSubmit({
         formType: ARTIC_DUMP_TRUCK,
@@ -123,6 +126,22 @@ class ArticDumpTruckForm extends Component {
             onBack={this.goBack.bind(this)}
           />
         );
+        case 5:
+          return (
+            <ArticDumpTruck3
+              value={this.state.formData}
+              onSubmit={this.onSubmit}
+              onBack={this.goBack.bind(this)}
+            />
+          );
+        case 6:
+          return (
+            <ArticDumpTruck4
+              value={this.state.formData}
+              onSubmit={this.onSubmit}
+              onBack={this.goBack.bind(this)}
+            />
+          );
       default:
         console.log('default page');
       }

@@ -16,6 +16,15 @@ class BasicInfoForm2 extends Component {
     };
   }
 
+  onFormSubmit() {
+    // Provides form vaidation
+    const { onSubmit } = this.props;
+    const value = this.refs.BasicInfoForm2.getValue();
+    if (value) {
+      onSubmit(this.state.value);
+    }
+  }
+
   renderForm() {
     return (
       t.struct({
@@ -33,7 +42,7 @@ class BasicInfoForm2 extends Component {
         <KeyboardAwareScrollView>
           <View style={styles.container}>
             <Form
-              ref="form"
+              ref="BasicInfoForm2"
               value={this.state.value}
               type={this.renderForm()}
               onChange={value => this.setState({ value })}
@@ -42,7 +51,7 @@ class BasicInfoForm2 extends Component {
         </KeyboardAwareScrollView>
         <CardSection>
           <NavButtons
-            onNext={() => this.props.onSubmit(this.state.value)}
+            onNext={this.onFormSubmit.bind(this)}
             onBack={this.props.onBack}
           />
         </CardSection>

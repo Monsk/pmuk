@@ -2,44 +2,46 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import t from 'tcomb-form-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { CardSection } from '../../components/common';
-import { NavButtons } from '../../components/NavButtons';
+import { CardSection } from '../../../components/common';
+import { NavButtons } from '../../../components/NavButtons';
 
 
 const Form = t.form.Form;
 
-class ArticDumpTruck2 extends Component {
+class ArticDumpTruck4 extends Component {
   constructor(props) {
     super(props);
     this.state = {
       value: {
-        covers: {
-          beltGuards: false,
-          machineGuards: false,
+        visibilityAids: {
+          allMirrors: false,
+          correctMirrors: false,
+          camera: false,
         },
-        windows: {
-          windscreen: false,
-          cabWindows: false,
+        signsAndDecals: {
+          idDisplayed: false,
+          warningSignDisplayed: false,
         },
         ...this.props.value
       }
     };
   }
 
-  renderCoversForm() {
+  renderVisibilityAidsForm() {
     return (
       t.struct({
-        beltGuards: t.Boolean,
-        machineGuards: t.Boolean,
+        allMirrors: t.Boolean,
+        correctMirrors: t.Boolean,
+        camera: t.Boolean,
       })
     );
   }
 
-  renderWindowsForm() {
+  renderSignsAndDecalsForm() {
     return (
       t.struct({
-        windscreen: t.Boolean,
-        cabWindows: t.Boolean,
+        idDisplayed: t.Boolean,
+        warningSignDisplayed: t.Boolean,
       })
     );
   }
@@ -47,17 +49,20 @@ class ArticDumpTruck2 extends Component {
   render() {
     const options = {
     fields: {
-      beltGuards: {
-        label: 'Fan and drive belt guards in position, secure and free from damage'
+      allMirrors: {
+        label: 'All mirrors in position and free from damage'
       },
-      machineGuards: {
-        label: 'All machine panels and guards in position, secure and free from damage'
+      correctMirrors: {
+        label: 'Correct mirrors fitted'
       },
-      windscreen: {
-        label: 'Windscreen free from cracks or scratches which obscure operator’s field of view'
+      camera: {
+        label: 'Camera and monitor function correctly'
       },
-      cabWindows: {
-        label: 'Other cab windows free from damage'
+      idDisplayed: {
+        label: 'CE and machine identification plate displayed and legible'
+      },
+      warningSignDisplayed: {
+        label: 'All warning signs and decals displayed and legible'
       },
       }
     };
@@ -66,30 +71,30 @@ class ArticDumpTruck2 extends Component {
       <View style={styles.form}>
         <KeyboardAwareScrollView>
           <View style={styles.container}>
-            <Text style={styles.h1}>Covers & Guards</Text>
+            <Text style={styles.h1}>Visibility aids</Text>
           </View>
           <View style={styles.container}>
             <Form
-              ref="covers"
-              value={this.state.value.covers}
-              type={this.renderCoversForm()}
+              ref="visibilityAids"
+              value={this.state.value.visibilityAids}
+              type={this.renderVisibilityAidsForm()}
               options={options}
               onChange={obj => this.setState({
-                value: { ...this.state.value, covers: { ...obj } } }
+                value: { ...this.state.value, visibilityAids: { ...obj } } }
               )}
             />
           </View>
           <View style={styles.container}>
-            <Text style={styles.h1}>Windscreen & Cab Windows</Text>
+            <Text style={styles.h1}>Signs and decals</Text>
           </View>
           <View style={styles.container}>
             <Form
-              ref="windows"
-              value={this.state.value.windows}
-              type={this.renderWindowsForm()}
+              ref="signsAndDecals"
+              value={this.state.value.signsAndDecals}
+              type={this.renderSignsAndDecalsForm()}
               options={options}
               onChange={obj => this.setState({
-                value: { ...this.state.value, windows: { ...obj } } }
+                value: { ...this.state.value, signsAndDecals: { ...obj } } }
               )}
             />
           </View>
@@ -125,4 +130,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default ArticDumpTruck2;
+export default ArticDumpTruck4;

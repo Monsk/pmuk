@@ -5,7 +5,6 @@ import {
  } from './types';
 
 export const formSubmit = ({ formType, formData }, onSuccess) => {
-  console.log({ formType });
   const { currentUser } = firebase.auth();
   return (dispatch) => {
     firebase.database()

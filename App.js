@@ -22,7 +22,7 @@ import CustomerListScreen from './screens/CustomerListScreen';
 import CustomerScreen from './screens/CustomerScreen';
 import CustomerEditScreen from './screens/CustomerEditScreen';
 import CustomerAddScreen from './screens/CustomerAddScreen';
-import ArticDumpTruckForm from './screens/Forms/ArticDumpTruckForm';
+import ArticDumpTruckForm from './screens/Forms/ArticDumpTruck/ArticDumpTruckForm';
 import Settings from './screens/Settings';
 
 class App extends React.Component {

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import t from 'tcomb-form-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { CardSection } from '../../components/common';
-import { NavButtons } from '../../components/NavButtons';
+import { CardSection } from '../../../components/common';
+import { NavButtons } from '../../../components/NavButtons';
 
 
 const Form = t.form.Form;
