@@ -49,7 +49,7 @@ export const customerSave = ({ name, uid }) => {
 
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/customers/${uid}`)
-      .set({ name })
+      .update({ name })
       .then(() => {
         dispatch({ type: CUSTOMER_SAVE_SUCCESS });
       });

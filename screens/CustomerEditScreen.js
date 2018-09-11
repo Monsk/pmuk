@@ -24,7 +24,7 @@ class CustomerEditForm extends Component {
   }
 
   componentWillMount() {
-    _.each(this.props.customer, (value, prop) => {
+    _.each(this.props.currentCustomer, (value, prop) => {
       this.props.customerUpdate({ prop, value });
     });
   }
@@ -33,9 +33,12 @@ class CustomerEditForm extends Component {
     this.props.navigation.setParams({ customerDelete: this.onDeletePress });
   }
 
-  onButtonPress() {
-    const { name, uid } = this.props;
-    this.props.customerSave({ name, uid });
+  onSavePress() {
+    const { name, uid } = this.props.customerForm;
+    this.props.customerSave(
+      { name, uid },
+      this.props.navigation.navigate('Customer', { uid, name })
+    );
   }
 
   onDeletePress = () => {
@@ -51,13 +54,11 @@ class CustomerEditForm extends Component {
   }
 
   render() {
-    console.log(this.props);
-
     return (
       <Card>
         <CustomerForm {...this.props} />
         <CardSection>
-          <Button onPress={this.onButtonPress.bind(this)} >
+          <Button onPress={this.onSavePress.bind(this)} >
             Save
           </Button>
         </CardSection>
@@ -67,9 +68,8 @@ class CustomerEditForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
-  const customer = state.currentCustomer;
-  return customer;
+  const { currentCustomer, customerForm } = state;
+  return { currentCustomer, customerForm };
 };
 
 export default connect(mapStateToProps,

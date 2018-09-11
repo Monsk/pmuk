@@ -5,6 +5,7 @@ import { customerUpdate } from '../actions';
 import { CardSection, Input } from './common';
 
 class CustomerForm extends Component {
+
   render() {
     return (
       <View>
@@ -22,6 +23,7 @@ class CustomerForm extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   const { name } = state.customerForm;
 
   return { name };

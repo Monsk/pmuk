@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { withNavigation } from 'react-navigation';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
@@ -46,7 +46,7 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <Card style={styles.loginCard}>
+      <Card>
         <CardSection>
           <Input
             label="Email"
@@ -76,13 +76,13 @@ class LoginForm extends Component {
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   errorTextStyle: {
     fontSize: 20,
     alignSelf: 'center',
-    color: 'red'
-  }
-};
+    color: 'red',
+  },
+});
 
 const mapStateToProps = state => {
   return {
