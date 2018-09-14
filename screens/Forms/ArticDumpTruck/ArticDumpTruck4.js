@@ -71,7 +71,7 @@ class ArticDumpTruck4 extends Component {
       <View style={styles.form}>
         <KeyboardAwareScrollView>
           <View style={styles.container}>
-            <Text style={styles.h1}>Visibility aids</Text>
+            <Text style={styles.h2}>Visibility aids</Text>
           </View>
           <View style={styles.container}>
             <Form
@@ -85,7 +85,7 @@ class ArticDumpTruck4 extends Component {
             />
           </View>
           <View style={styles.container}>
-            <Text style={styles.h1}>Signs and decals</Text>
+            <Text style={styles.h2}>Signs and decals</Text>
           </View>
           <View style={styles.container}>
             <Form
@@ -101,7 +101,6 @@ class ArticDumpTruck4 extends Component {
         </KeyboardAwareScrollView>
         <CardSection>
           <NavButtons
-            submit
             onNext={() => this.props.onSubmit(this.state.value)}
             onBack={this.props.onBack}
           />
@@ -113,8 +112,9 @@ class ArticDumpTruck4 extends Component {
 }
 
 const styles = StyleSheet.create({
-  h1: {
-    fontSize: 24,
+  h2: {
+    fontSize: 20,
+    fontWeight: 'bold'
   },
   form: {
     flex: 1,

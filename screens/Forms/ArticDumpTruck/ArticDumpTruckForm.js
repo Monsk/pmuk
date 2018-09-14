@@ -8,12 +8,17 @@ import {
   Image,
   Alert
 } from 'react-native';
-import BasicInfoForm from '../BasicInfoForm';
-import BasicInfoForm2 from '../BasicInfoForm2';
-import ArticDumpTruck1 from './ArticDumpTruck1';
-import ArticDumpTruck2 from './ArticDumpTruck2';
-import ArticDumpTruck3 from './ArticDumpTruck3';
-import ArticDumpTruck4 from './ArticDumpTruck4';
+
+import {
+  BasicInfoForm,
+  BasicInfoForm2,
+  ArticDumpTruck1,
+  ArticDumpTruck2,
+  ArticDumpTruck3,
+  ArticDumpTruck4,
+  ArticDumpTruck5,
+  ArticDumpTruck6,
+} from './ArticDumpTruckFormIndex';
 import { ARTIC_DUMP_TRUCK } from '../formTypes';
 
 import { customersFetch, formSubmit } from '../../../actions';
@@ -71,7 +76,7 @@ class ArticDumpTruckForm extends Component {
 
   goToNext() {
     const { step } = this.state;
-    if (step !== 6) {
+    if (step !== 8) {
       this.setState({ step: step + 1 });
       console.log(this.state);
     } else {
@@ -137,6 +142,22 @@ class ArticDumpTruckForm extends Component {
         case 6:
           return (
             <ArticDumpTruck4
+              value={this.state.formData}
+              onSubmit={this.onSubmit}
+              onBack={this.goBack.bind(this)}
+            />
+          );
+        case 7:
+          return (
+            <ArticDumpTruck5
+              value={this.state.formData}
+              onSubmit={this.onSubmit}
+              onBack={this.goBack.bind(this)}
+            />
+          );
+        case 8:
+          return (
+            <ArticDumpTruck6
               value={this.state.formData}
               onSubmit={this.onSubmit}
               onBack={this.goBack.bind(this)}

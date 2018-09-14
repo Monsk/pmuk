@@ -66,7 +66,7 @@ class ArticDumpTruck2 extends Component {
       <View style={styles.form}>
         <KeyboardAwareScrollView>
           <View style={styles.container}>
-            <Text style={styles.h1}>Covers & Guards</Text>
+            <Text style={styles.h2}>Covers & Guards</Text>
           </View>
           <View style={styles.container}>
             <Form
@@ -80,7 +80,7 @@ class ArticDumpTruck2 extends Component {
             />
           </View>
           <View style={styles.container}>
-            <Text style={styles.h1}>Windscreen & Cab Windows</Text>
+            <Text style={styles.h2}>Windscreen & Cab Windows</Text>
           </View>
           <View style={styles.container}>
             <Form
@@ -107,8 +107,9 @@ class ArticDumpTruck2 extends Component {
 }
 
 const styles = StyleSheet.create({
-  h1: {
-    fontSize: 24,
+  h2: {
+    fontSize: 20,
+    fontWeight: 'bold'
   },
   form: {
     flex: 1,

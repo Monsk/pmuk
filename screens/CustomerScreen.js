@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   h2: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold'
   },
   container: {
