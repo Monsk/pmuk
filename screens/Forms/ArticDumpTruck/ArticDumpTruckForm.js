@@ -18,6 +18,11 @@ import {
   ArticDumpTruck4,
   ArticDumpTruck5,
   ArticDumpTruck6,
+  ArticDumpTruck7,
+  ArticDumpTruck8,
+  ArticDumpTruck9,
+  ArticDumpTruck10,
+  ArticDumpTruck11,
 } from './ArticDumpTruckFormIndex';
 import { ARTIC_DUMP_TRUCK } from '../formTypes';
 
@@ -76,7 +81,7 @@ class ArticDumpTruckForm extends Component {
 
   goToNext() {
     const { step } = this.state;
-    if (step !== 8) {
+    if (step !== 13) {
       this.setState({ step: step + 1 });
       console.log(this.state);
     } else {
@@ -131,38 +136,78 @@ class ArticDumpTruckForm extends Component {
             onBack={this.goBack.bind(this)}
           />
         );
-        case 5:
-          return (
-            <ArticDumpTruck3
-              value={this.state.formData}
-              onSubmit={this.onSubmit}
-              onBack={this.goBack.bind(this)}
-            />
-          );
-        case 6:
-          return (
-            <ArticDumpTruck4
-              value={this.state.formData}
-              onSubmit={this.onSubmit}
-              onBack={this.goBack.bind(this)}
-            />
-          );
-        case 7:
-          return (
-            <ArticDumpTruck5
-              value={this.state.formData}
-              onSubmit={this.onSubmit}
-              onBack={this.goBack.bind(this)}
-            />
-          );
-        case 8:
-          return (
-            <ArticDumpTruck6
-              value={this.state.formData}
-              onSubmit={this.onSubmit}
-              onBack={this.goBack.bind(this)}
-            />
-          );
+      case 5:
+        return (
+          <ArticDumpTruck3
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 6:
+        return (
+          <ArticDumpTruck4
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 7:
+        return (
+          <ArticDumpTruck5
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 8:
+        return (
+          <ArticDumpTruck6
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 9:
+        return (
+          <ArticDumpTruck7
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 10:
+        return (
+          <ArticDumpTruck8
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 11:
+        return (
+          <ArticDumpTruck9
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 12:
+        return (
+          <ArticDumpTruck10
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 13:
+        return (
+          <ArticDumpTruck11
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
       default:
         console.log('default page');
       }
