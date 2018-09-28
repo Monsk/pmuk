@@ -11,3 +11,4 @@ export ArticDumpTruck8 from './ArticDumpTruck8';
 export ArticDumpTruck9 from './ArticDumpTruck9';
 export ArticDumpTruck10 from './ArticDumpTruck10';
 export ArticDumpTruck11 from './ArticDumpTruck11';
+export ArticDumpTruck12 from './ArticDumpTruck12';
