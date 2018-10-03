@@ -23,6 +23,7 @@ import CustomerScreen from './screens/CustomerScreen';
 import CustomerEditScreen from './screens/CustomerEditScreen';
 import CustomerAddScreen from './screens/CustomerAddScreen';
 import ArticDumpTruckForm from './screens/Forms/ArticDumpTruck/ArticDumpTruckForm';
+import LoadallForm from './screens/Forms/Loadall/LoadallForm';
 import Settings from './screens/Settings';
 
 class App extends React.Component {
@@ -54,7 +55,8 @@ class App extends React.Component {
 
     const HomeStack = createStackNavigator({
       HomeScreen,
-      ArticDumpTruckForm
+      ArticDumpTruckForm,
+      LoadallForm,
     }, {
       navigationOptions: headerOptions
     });

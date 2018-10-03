@@ -24,6 +24,9 @@ import {
   ArticDumpTruck10,
   ArticDumpTruck11,
   ArticDumpTruck12,
+  ArticDumpTruck13,
+  ArticDumpTruck14,
+  ArticDumpTruck15,
 } from './ArticDumpTruckFormIndex';
 import { ARTIC_DUMP_TRUCK } from '../formTypes';
 
@@ -82,7 +85,7 @@ class ArticDumpTruckForm extends Component {
 
   goToNext() {
     const { step } = this.state;
-    if (step !== 14) {
+    if (step !== 17) {
       this.setState({ step: step + 1 });
       console.log(this.state);
     } else {
@@ -212,6 +215,30 @@ class ArticDumpTruckForm extends Component {
       case 14:
         return (
           <ArticDumpTruck12
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 15:
+        return (
+          <ArticDumpTruck13
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 16:
+        return (
+          <ArticDumpTruck14
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 17:
+        return (
+          <ArticDumpTruck15
             value={this.state.formData}
             onSubmit={this.onSubmit}
             onBack={this.goBack.bind(this)}
