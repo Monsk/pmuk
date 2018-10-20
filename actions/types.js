@@ -15,3 +15,4 @@ export const CUSTOMER_DELETED = 'customer_deleted';
 
 export const FORM_SUBMIT = 'form_submit';
 export const FORM_SUBMIT_FAIL = 'form_submit_fail';
+export const SET_ACTIVE_FORM = 'set_active_form';

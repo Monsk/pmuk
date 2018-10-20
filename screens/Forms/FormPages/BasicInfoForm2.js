@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 import t from 'tcomb-form-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { CardSection } from '../../components/common';
-import { NavButtons } from '../../components/NavButtons';
+import { CardSection } from '../../../components/common';
+import { NavButtons } from '../../../components/NavButtons';
+
 
 const Form = t.form.Form;
 
-class BasicInfoForm extends Component {
+class BasicInfoForm2 extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,45 +18,62 @@ class BasicInfoForm extends Component {
   }
 
   onFormSubmit() {
+    // Provides form vaidation
     const { onSubmit } = this.props;
-    const value = this.refs.BasicInfoForm.getValue();
+    const value = this.refs.BasicInfoForm2.getValue();
     if (value) {
       onSubmit(this.state.value);
     }
   }
 
   renderForm() {
-    const { customers } = this.props;
-
-    return (
-      t.struct({
-        competent_person: t.String,
+    const basicForm = t.struct({
         machine_make: t.String,
         machine_model: t.String,
-        customer: t.enums(customers)
-      })
-    );
+        workshop_no: t.String,
+        serial_no: t.String,
+        year_of_manufacture: t.Number,
+        location: t.String,
+    });
+
+    if (this.props.activeForm === 'Loadall') {
+      return (
+        basicForm.extend({
+          boom_length: t.Number,
+          hitch_details: t.String
+        })
+      );
+    }
+
+    return basicForm;
   }
 
-
   render() {
+    const options = {
+    fields: {
+      boom_length: {
+        label: 'Boom Length (m)'
+      },
+      }
+    };
+
     return (
       <View style={styles.form}>
         <KeyboardAwareScrollView>
           <View style={styles.container}>
             <Form
-              ref="BasicInfoForm"
+              ref="BasicInfoForm2"
               value={this.state.value}
               type={this.renderForm()}
+              options={options}
               onChange={value => this.setState({ value })}
             />
           </View>
         </KeyboardAwareScrollView>
         <CardSection>
           <NavButtons
-            singleNav
             onNext={this.onFormSubmit.bind(this)}
-            navigation={this.props.navigation}
+            onBack={this.props.onBack}
           />
         </CardSection>
       </View>
@@ -75,12 +94,12 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#ffffff',
   },
-  buttons: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  }
 });
 
 
-export default BasicInfoForm;
+const mapStateToProps = (state) => {
+  const { form } = state;
+  return form;
+};
+
+export default connect(mapStateToProps)(BasicInfoForm2);

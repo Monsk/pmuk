@@ -12,11 +12,19 @@ import {
 import {
   BasicInfoForm,
   BasicInfoForm2,
-  Loadall1,
+  AccessEgressFluids,
+  CoversWindows,
+  SeatBeltLightsHorn,
+  VisibilityAidsSignsDecals,
+  ControlLevers,
 } from './LoadallFormIndex';
 import { LOADALL } from '../formTypes';
 
-import { customersFetch, formSubmit } from '../../../actions';
+import {
+  customersFetch,
+  setActiveForm,
+  formSubmit
+} from '../../../actions';
 
 class LoadallForm extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -56,6 +64,7 @@ class LoadallForm extends Component {
 
   componentWillMount() {
     this.props.customersFetch();
+    this.props.setActiveForm({ formType: LOADALL });
   }
 
   onSubmit = (formData) => {
@@ -76,7 +85,7 @@ class LoadallForm extends Component {
       console.log(this.state);
     } else {
       this.props.formSubmit({
-        formType: LOADALL,
+        formType: this.props.activeForm,
         formData: this.state.formData,
       }, this.onSuccess);
     }
@@ -112,7 +121,39 @@ class LoadallForm extends Component {
         );
       case 3:
         return (
-          <Loadall1
+          <AccessEgressFluids
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 4:
+        return (
+          <CoversWindows
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 5:
+        return (
+          <SeatBeltLightsHorn
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 6:
+        return (
+          <VisibilityAidsSignsDecals
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 7:
+        return (
+          <ControlLevers
             value={this.state.formData}
             onSubmit={this.onSubmit}
             onBack={this.goBack.bind(this)}
@@ -142,9 +183,14 @@ const mapStateToProps = (state) => {
   const customers = _.mapValues(state.customerList, (val) => {
      return val.name;
   });
-  const { customerForm } = state;
-  return { customers, customerForm };
+  const { customerForm, form } = state;
+  const { activeForm } = form;
+  return { customers, customerForm, activeForm };
 };
 
 
-export default connect(mapStateToProps, { customersFetch, formSubmit })(LoadallForm);
+export default connect(mapStateToProps, {
+  setActiveForm,
+  customersFetch,
+  formSubmit
+})(LoadallForm);

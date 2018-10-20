@@ -2,7 +2,15 @@ import firebase from 'firebase';
 import {
   FORM_SUBMIT,
   FORM_SUBMIT_FAIL,
+  SET_ACTIVE_FORM,
  } from './types';
+
+export const setActiveForm = ({ formType }) => {
+  return {
+    type: SET_ACTIVE_FORM,
+    payload: formType,
+  };
+};
 
 export const formSubmit = ({ formType, formData }, onSuccess) => {
   const { currentUser } = firebase.auth();

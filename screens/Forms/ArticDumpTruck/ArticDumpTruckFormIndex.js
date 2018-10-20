@@ -1,5 +1,5 @@
-export BasicInfoForm from '../BasicInfoForm';
-export BasicInfoForm2 from '../BasicInfoForm2';
+export BasicInfoForm from '../FormPages/BasicInfoForm';
+export BasicInfoForm2 from '../FormPages/BasicInfoForm2';
 export ArticDumpTruck1 from './ArticDumpTruck1';
 export ArticDumpTruck2 from './ArticDumpTruck2';
 export ArticDumpTruck3 from './ArticDumpTruck3';

@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import t from 'tcomb-form-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { CardSection } from '../../components/common';
-import { NavButtons } from '../../components/NavButtons';
-
+import { CardSection } from '../../../components/common';
+import { NavButtons } from '../../../components/NavButtons';
 
 const Form = t.form.Form;
 
-class BasicInfoForm2 extends Component {
+class BasicInfoForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,24 +16,22 @@ class BasicInfoForm2 extends Component {
   }
 
   onFormSubmit() {
-    // Provides form vaidation
     const { onSubmit } = this.props;
-    const value = this.refs.BasicInfoForm2.getValue();
+    const value = this.refs.BasicInfoForm.getValue();
     if (value) {
       onSubmit(this.state.value);
     }
   }
 
   renderForm() {
-    return (
-      t.struct({
-        workshop_no: t.String,
-        serial_no: t.String,
-        year_of_manufacture: t.Number,
-        location: t.String
-      })
-    );
+    const { customers } = this.props;
+
+    return t.struct({
+      competent_person: t.String,
+      customer: t.enums(customers),
+    });
   }
+
 
   render() {
     return (
@@ -42,7 +39,7 @@ class BasicInfoForm2 extends Component {
         <KeyboardAwareScrollView>
           <View style={styles.container}>
             <Form
-              ref="BasicInfoForm2"
+              ref="BasicInfoForm"
               value={this.state.value}
               type={this.renderForm()}
               onChange={value => this.setState({ value })}
@@ -51,8 +48,9 @@ class BasicInfoForm2 extends Component {
         </KeyboardAwareScrollView>
         <CardSection>
           <NavButtons
+            singleNav
             onNext={this.onFormSubmit.bind(this)}
-            onBack={this.props.onBack}
+            navigation={this.props.navigation}
           />
         </CardSection>
       </View>
@@ -73,7 +71,12 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#ffffff',
   },
+  buttons: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  }
 });
 
 
-export default BasicInfoForm2;
+export default BasicInfoForm;

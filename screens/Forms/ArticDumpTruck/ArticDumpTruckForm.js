@@ -30,7 +30,11 @@ import {
 } from './ArticDumpTruckFormIndex';
 import { ARTIC_DUMP_TRUCK } from '../formTypes';
 
-import { customersFetch, formSubmit } from '../../../actions';
+import {
+  customersFetch,
+  formSubmit,
+  setActiveForm
+ } from '../../../actions';
 
 class ArticDumpTruckForm extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -70,6 +74,7 @@ class ArticDumpTruckForm extends Component {
 
   componentWillMount() {
     this.props.customersFetch();
+    this.props.setActiveForm({ formType: ARTIC_DUMP_TRUCK });
   }
 
   onSubmit = (formData) => {
@@ -90,7 +95,7 @@ class ArticDumpTruckForm extends Component {
       console.log(this.state);
     } else {
       this.props.formSubmit({
-        formType: ARTIC_DUMP_TRUCK,
+        formType: this.props.activeForm,
         formData: this.state.formData,
       }, this.onSuccess);
     }
@@ -273,4 +278,4 @@ const mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps, { customersFetch, formSubmit })(ArticDumpTruckForm);
+export default connect(mapStateToProps, { customersFetch, formSubmit, setActiveForm })(ArticDumpTruckForm);
