@@ -30,7 +30,7 @@
     "android": {
       "package": "com.simonhunter.pmukapp",
       "permissions": [],
-      "versionCode": 2
+      "versionCode": 3
     }
   }
 }
