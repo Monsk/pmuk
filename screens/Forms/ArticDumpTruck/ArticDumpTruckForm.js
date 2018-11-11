@@ -22,11 +22,11 @@ import {
   ArticDumpTruck8,
   ArticDumpTruck9,
   ArticDumpTruck10,
-  ArticDumpTruck11,
-  ArticDumpTruck12,
-  ArticDumpTruck13,
+  HydraulicCylinders,
+  HydraulicHosesPipes,
+  HoseRuptureValvesAndServos,
   ArticDumpTruck14,
-  ArticDumpTruck15,
+  AssessmentConclusion,
 } from './ArticDumpTruckFormIndex';
 import { ARTIC_DUMP_TRUCK } from '../formTypes';
 
@@ -85,14 +85,21 @@ class ArticDumpTruckForm extends Component {
   }
 
   onSuccess() {
-    this.props.navigation.navigate('HomeScreen');
+    Alert.alert(
+    'Form saved',
+    'Your form has been saved successfully.',
+    [
+      { text: 'OK', onPress: () => this.props.navigation.navigate('HomeScreen') },
+    ]
+  );
   }
 
   goToNext() {
     const { step } = this.state;
-    if (step !== 17) {
+    if (step < 17) {
       this.setState({ step: step + 1 });
       console.log(this.state);
+      console.log(this.props.activeForm);
     } else {
       this.props.formSubmit({
         formType: this.props.activeForm,
@@ -211,7 +218,7 @@ class ArticDumpTruckForm extends Component {
         );
       case 13:
         return (
-          <ArticDumpTruck11
+          <HydraulicCylinders
             value={this.state.formData}
             onSubmit={this.onSubmit}
             onBack={this.goBack.bind(this)}
@@ -219,7 +226,7 @@ class ArticDumpTruckForm extends Component {
         );
       case 14:
         return (
-          <ArticDumpTruck12
+          <HydraulicHosesPipes
             value={this.state.formData}
             onSubmit={this.onSubmit}
             onBack={this.goBack.bind(this)}
@@ -227,7 +234,7 @@ class ArticDumpTruckForm extends Component {
         );
       case 15:
         return (
-          <ArticDumpTruck13
+          <HoseRuptureValvesAndServos
             value={this.state.formData}
             onSubmit={this.onSubmit}
             onBack={this.goBack.bind(this)}
@@ -243,7 +250,7 @@ class ArticDumpTruckForm extends Component {
         );
       case 17:
         return (
-          <ArticDumpTruck15
+          <AssessmentConclusion
             value={this.state.formData}
             onSubmit={this.onSubmit}
             onBack={this.goBack.bind(this)}
@@ -273,8 +280,9 @@ const mapStateToProps = (state) => {
   const customers = _.mapValues(state.customerList, (val) => {
      return val.name;
   });
-  const { customerForm } = state;
-  return { customers, customerForm };
+  const { customerForm, form } = state;
+  const { activeForm } = form;
+  return { customers, customerForm, activeForm };
 };
 
 

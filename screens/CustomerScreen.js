@@ -39,7 +39,7 @@ class CustomerScreen extends Component {
       rowHasChanged: (r1, r2) => r1 !== r2
     });
 
-    this.dataSource = ds.cloneWithRows(forms);
+    this.dataSource = ds.cloneWithRows(forms.reverse());
   }
 
   renderRow(form) {

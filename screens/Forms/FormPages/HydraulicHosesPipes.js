@@ -8,7 +8,7 @@ import { NavButtons } from '../../../components/NavButtons';
 
 const Form = t.form.Form;
 
-class ArticDumpTruck12 extends Component {
+class HydraulicHosesPipes extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -87,7 +87,7 @@ class ArticDumpTruck12 extends Component {
       <View style={styles.form}>
         <KeyboardAwareScrollView>
           <View style={styles.container}>
-            <Text style={styles.h2}>Hydraulic Pipes</Text>
+            <Text style={styles.h2}>Hydraulic pipes</Text>
           </View>
           <View style={styles.container}>
             <Form
@@ -101,7 +101,7 @@ class ArticDumpTruck12 extends Component {
             />
           </View>
           <View style={styles.container}>
-            <Text style={styles.h2}>Hydraulic Hoses</Text>
+            <Text style={styles.h2}>Hydraulic hoses</Text>
           </View>
           <View style={styles.container}>
             <Form
@@ -146,4 +146,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default ArticDumpTruck12;
+export default HydraulicHosesPipes;

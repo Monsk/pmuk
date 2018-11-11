@@ -36,7 +36,7 @@ class BasicInfoForm2 extends Component {
         location: t.String,
     });
 
-    if (this.props.activeForm === 'Loadall') {
+    if (this.props.activeForm === 'LoadallForm') {
       return (
         basicForm.extend({
           boom_length: t.Number,

@@ -8,12 +8,27 @@ import { NavButtons } from '../../../components/NavButtons';
 
 const Form = t.form.Form;
 
-class ArticDumpTruck15 extends Component {
+class AssessmentConclusion extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: this.props.value
+      value: {
+        assessmentConclusion: {
+          typeOfExamination: null,
+          safetyConfirmation: null
+        },
+        ...this.props.value
+      }
     };
+  }
+
+  onFormSubmit() {
+    // Provides form validation
+    const { onSubmit } = this.props;
+    const value = this.refs.examCompletion.getValue();
+    if (value) {
+      onSubmit(this.state.value);
+    }
   }
 
   renderForm() {
@@ -59,16 +74,18 @@ class ArticDumpTruck15 extends Component {
           <View style={styles.container}>
             <Form
               ref="examCompletion"
-              value={this.state.value}
+              value={this.state.value.assessmentConclusion}
               type={this.renderForm()}
               options={options}
-              onChange={value => this.setState({ value })}
+              onChange={obj => this.setState({
+                value: { ...this.state.value, assessmentConclusion: { ...obj } } }
+              )}
             />
           </View>
         </KeyboardAwareScrollView>
         <CardSection>
           <NavButtons
-            onNext={() => this.props.onSubmit(this.state.value)}
+            onNext={this.onFormSubmit.bind(this)}
             onBack={this.props.onBack}
           />
         </CardSection>
@@ -97,4 +114,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default ArticDumpTruck15;
+export default AssessmentConclusion;

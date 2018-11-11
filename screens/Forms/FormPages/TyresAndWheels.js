@@ -8,34 +8,19 @@ import { NavButtons } from '../../../components/NavButtons';
 
 const Form = t.form.Form;
 
-class ArticDumpTruck14 extends Component {
+class TyresAndWheels extends Component {
   constructor(props) {
     super(props);
     this.state = {
       value: {
-        suspensionSystem: {
-          suspensionFunctions: false,
-          accumulatorsFreeFromOilLeaks: false,
-        },
         tyresAndWheels: {
-          correctSizedTyres: false,
-          freeFromPunctures: false,
-          wheelNutsInPlace: false,
-          rimsNoCorrosion: false,
-          tyresInflated: false,
+          servosFreeFromOilLeaks: false,
+          servosSecure: false,
+          electricalConnectorsSecure: false,
         },
         ...this.props.value
       }
     };
-  }
-
-  renderSuspensionSystemForm() {
-    return (
-      t.struct({
-        suspensionFunctions: t.Boolean,
-        accumulatorsFreeFromOilLeaks: t.Boolean,
-      })
-    );
   }
 
   renderTyresAndWheelsForm() {
@@ -80,20 +65,6 @@ class ArticDumpTruck14 extends Component {
     return (
       <View style={styles.form}>
         <KeyboardAwareScrollView>
-          <View style={styles.container}>
-            <Text style={styles.h2}>Suspension system</Text>
-          </View>
-          <View style={styles.container}>
-            <Form
-              ref="suspensionSystem"
-              value={this.state.value.suspensionSystem}
-              type={this.renderSuspensionSystemForm()}
-              options={options}
-              onChange={obj => this.setState({
-                value: { ...this.state.value, suspensionSystem: { ...obj } } }
-              )}
-            />
-          </View>
           <View style={styles.container}>
             <Text style={styles.h2}>Tyres and wheels</Text>
           </View>
@@ -140,4 +111,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default ArticDumpTruck14;
+export default TyresAndWheels;

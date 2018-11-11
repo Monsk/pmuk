@@ -8,56 +8,57 @@ import { NavButtons } from '../../../components/NavButtons';
 
 const Form = t.form.Form;
 
-class CoversWindows extends Component {
+class LiftCapTableRCI extends Component {
   constructor(props) {
     super(props);
     this.state = {
       value: {
-        covers: {
-          beltGuards: false,
-          machineGuards: false,
+        liftCapTable: {
+          liftCapacityTable: false,
         },
-        windows: {
-          windscreen: false,
-          cabWindows: false,
+        RCI: {
+          RCIFunctional: false,
+          RCIDisplay: false,
+          RCICalibration: false,
         },
         ...this.props.value
       }
     };
   }
 
-  renderCoversForm() {
+  renderLiftCapTableForm() {
     return (
       t.struct({
-        beltGuards: t.Boolean,
-        machineGuards: t.Boolean,
+        liftCapacityTable: t.Boolean,
       })
     );
   }
 
-  renderWindowsForm() {
+  renderRCIForm() {
     return (
       t.struct({
-        windscreen: t.Boolean,
-        cabWindows: t.Boolean,
+        RCIFunctional: t.Boolean,
+        RCIDisplay: t.Boolean,
+        RCICalibration: t.Boolean,
       })
     );
   }
+
 
   render() {
     const options = {
     fields: {
-      beltGuards: {
-        label: 'Fan and drive belt guards in position, secure and free from damage'
+      liftCapacityTable: {
+        label: 'Correct lift capacity table for machine displayed or available in cab'
       },
-      machineGuards: {
-        label: 'All machine panels and guards in position, secure and free from damage'
+      RCIFunctional: {
+        label: 'RCI functional'
       },
-      windscreen: {
-        label: 'Windscreen free from cracks or scratches which obscure operator’s field of view'
+      RCIDisplay: {
+        label: 'RCI displays correct readings'
       },
-      cabWindows: {
-        label: 'Other cab windows free from damage'
+      RCICalibration: {
+        label: 'RCI tested to ensure correct calibration within last 12 months'
       },
       }
     };
@@ -66,30 +67,30 @@ class CoversWindows extends Component {
       <View style={styles.form}>
         <KeyboardAwareScrollView>
           <View style={styles.container}>
-            <Text style={styles.h2}>Covers & guards</Text>
+            <Text style={styles.h2}>Lift capacity table</Text>
           </View>
           <View style={styles.container}>
             <Form
-              ref="covers"
-              value={this.state.value.covers}
-              type={this.renderCoversForm()}
+              ref="liftCapTable"
+              value={this.state.value.liftCapTable}
+              type={this.renderLiftCapTableForm()}
               options={options}
               onChange={obj => this.setState({
-                value: { ...this.state.value, covers: { ...obj } } }
+                value: { ...this.state.value, liftCapTable: { ...obj } } }
               )}
             />
           </View>
           <View style={styles.container}>
-            <Text style={styles.h2}>Windscreen & cab windows</Text>
+            <Text style={styles.h2}>Rated capacity indicator</Text>
           </View>
           <View style={styles.container}>
             <Form
-              ref="windows"
-              value={this.state.value.windows}
-              type={this.renderWindowsForm()}
+              ref="liftCapTable"
+              value={this.state.value.RCI}
+              type={this.renderRCIForm()}
               options={options}
               onChange={obj => this.setState({
-                value: { ...this.state.value, windows: { ...obj } } }
+                value: { ...this.state.value, RCI: { ...obj } } }
               )}
             />
           </View>
@@ -125,4 +126,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default CoversWindows;
+export default LiftCapTableRCI;

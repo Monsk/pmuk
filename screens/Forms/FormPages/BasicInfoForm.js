@@ -16,6 +16,7 @@ class BasicInfoForm extends Component {
   }
 
   onFormSubmit() {
+    // Provides form validation
     const { onSubmit } = this.props;
     const value = this.refs.BasicInfoForm.getValue();
     if (value) {

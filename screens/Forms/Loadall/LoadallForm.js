@@ -17,6 +17,19 @@ import {
   SeatBeltLightsHorn,
   VisibilityAidsSignsDecals,
   ControlLevers,
+  LiftCapTableRCI,
+  OverloadWarning,
+  Boom,
+  TelescopicExtension,
+  ForksAndBucket,
+  LoadAttachmentPoint,
+  HydraulicCylinders,
+  HydraulicHosesPipes,
+  HoseRuptureValvesAndServos,
+  SuperstructureAndChassis,
+  FrontAndRearAxles,
+  TyresAndWheels,
+  AssessmentConclusion,
 } from './LoadallFormIndex';
 import { LOADALL } from '../formTypes';
 
@@ -75,14 +88,21 @@ class LoadallForm extends Component {
   }
 
   onSuccess() {
-    this.props.navigation.navigate('HomeScreen');
+    Alert.alert(
+    'Form saved',
+    'Your form has been saved successfully.',
+    [
+      { text: 'OK', onPress: () => this.props.navigation.navigate('HomeScreen') },
+    ]
+  );
   }
 
   goToNext() {
     const { step } = this.state;
-    if (step !== 16) {
+    if (step < 20) {
       this.setState({ step: step + 1 });
       console.log(this.state);
+      console.log(this.props.activeForm);
     } else {
       this.props.formSubmit({
         formType: this.props.activeForm,
@@ -154,6 +174,110 @@ class LoadallForm extends Component {
       case 7:
         return (
           <ControlLevers
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 8:
+        return (
+          <LiftCapTableRCI
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 9:
+        return (
+          <OverloadWarning
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 10:
+        return (
+          <Boom
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 11:
+        return (
+          <TelescopicExtension
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 12:
+        return (
+          <ForksAndBucket
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 13:
+        return (
+          <LoadAttachmentPoint
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 14:
+        return (
+          <HydraulicCylinders
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 15:
+        return (
+          <HydraulicHosesPipes
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 16:
+        return (
+          <HoseRuptureValvesAndServos
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 17:
+        return (
+          <SuperstructureAndChassis
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 18:
+        return (
+          <FrontAndRearAxles
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 19:
+        return (
+          <TyresAndWheels
+            value={this.state.formData}
+            onSubmit={this.onSubmit}
+            onBack={this.goBack.bind(this)}
+          />
+        );
+      case 20:
+        return (
+          <AssessmentConclusion
             value={this.state.formData}
             onSubmit={this.onSubmit}
             onBack={this.goBack.bind(this)}

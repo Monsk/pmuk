@@ -1,5 +1,5 @@
 export const ARTIC_DUMP_TRUCK = 'ArticDumpTruckForm';
-export const LOADALL = 'Loadall';
+export const LOADALL = 'LoadallForm';
 
 export const formTypes = [
   { type: 'ArticDumpTruckForm', title: 'Articulated Dump Truck' },

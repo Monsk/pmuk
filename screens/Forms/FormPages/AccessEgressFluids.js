@@ -76,7 +76,7 @@ class AccessEgressFluids extends Component {
       <View style={styles.form}>
         <KeyboardAwareScrollView>
           <View style={styles.container}>
-            <Text style={styles.h2}>Access & Egress</Text>
+            <Text style={styles.h2}>Access & egress</Text>
           </View>
           <View style={styles.container}>
             <Form
@@ -90,7 +90,7 @@ class AccessEgressFluids extends Component {
             />
           </View>
           <View style={styles.container}>
-            <Text style={styles.h2}>Oil & Other Fluids</Text>
+            <Text style={styles.h2}>Oil & Other fluids</Text>
           </View>
           <View style={styles.container}>
             <Form
