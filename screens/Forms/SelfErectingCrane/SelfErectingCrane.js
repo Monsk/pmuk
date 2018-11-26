@@ -12,24 +12,8 @@ import {
 import {
   BasicInfoForm,
   BasicInfoForm2,
-  AccessEgressFluids,
-  CoversWindows,
-  SeatBeltLightsHorn,
-  VisibilityAidsSignsDecals,
-  ControlLevers,
-  LiftCapTableRCI,
-  OverloadWarning,
-  Boom,
-  TelescopicExtension,
-  ForksAndBucket,
-  LoadAttachmentPoint,
-  HydraulicCylinders,
-  HydraulicHosesPipes,
-  HoseRuptureValvesAndServos,
-  SuperstructureAndChassis,
-  FrontAndRearAxles,
-  TyresAndWheels,
-  AssessmentConclusion,
+  FluidsCoversDecals,
+  ControlLevers
 } from './SelfErectingCraneIndex';
 import { SELF_ERECTING_CRANE } from '../formTypes';
 
@@ -141,7 +125,7 @@ class SelfErectingCraneForm extends Component {
         );
       case 3:
         return (
-          <AccessEgressFluids
+          <FluidsCoversDecals
             value={this.state.formData}
             onSubmit={this.onSubmit}
             onBack={this.goBack.bind(this)}
@@ -149,7 +133,7 @@ class SelfErectingCraneForm extends Component {
         );
       case 4:
         return (
-          <CoversWindows
+          <ControlLevers
             value={this.state.formData}
             onSubmit={this.onSubmit}
             onBack={this.goBack.bind(this)}

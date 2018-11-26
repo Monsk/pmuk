@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 import t from 'tcomb-form-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { CardSection } from '../../../components/common';
@@ -26,13 +27,22 @@ class ControlLevers extends Component {
   }
 
   renderControlLeversForm() {
+    console.log(this.props);
+    const basicForm = t.struct({
+      decalsLegible: t.Boolean,
+      leversFunction: t.Boolean,
+      switchesFunction: t.Boolean,
+      manualAvailable: t.Boolean,
+    });
+
+    if (this.props.activeForm === 'SelfErectingCraneForm') {
+      console.log('I\'m a SelfErectingCraneForm');
+      return basicForm;
+    }
+
     return (
-      t.struct({
-        decalsLegible: t.Boolean,
-        leversFunction: t.Boolean,
+      basicForm.extend({
         noUncontrolledMovement: t.Boolean,
-        switchesFunction: t.Boolean,
-        manualAvailable: t.Boolean,
       })
     );
   }
@@ -107,5 +117,9 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapStateToProps = (state) => {
+  const { form } = state;
+  return form;
+};
 
-export default ControlLevers;
+export default connect(mapStateToProps)(ControlLevers);
