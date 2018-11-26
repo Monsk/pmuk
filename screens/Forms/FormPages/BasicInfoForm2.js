@@ -36,18 +36,27 @@ class BasicInfoForm2 extends Component {
         location: t.String,
     });
 
-    if (this.props.activeForm === 'LoadallForm') {
-      return (
-        basicForm.extend({
-          boom_length: t.Number,
-          hitch_details: t.String
-        })
-      );
+    switch (this.props.activeForm) {
+      case 'LoadallForm':
+        return (
+          basicForm.extend({
+            boom_length: t.Number,
+            hitch_details: t.String
+          })
+        );
+      case 'SelfErectingCraneForm':
+        return (
+          basicForm.extend({
+            jib_length: t.Number,
+            jib_height: t.Number,
+            ballast: t.Number,
+          })
+        );
+      default:
+        return basicForm;
     }
-
-    return basicForm;
   }
-
+  
   render() {
     const options = {
     fields: {
