@@ -24,6 +24,7 @@ import CustomerEditScreen from './screens/CustomerEditScreen';
 import CustomerAddScreen from './screens/CustomerAddScreen';
 import ArticDumpTruckForm from './screens/Forms/ArticDumpTruck/ArticDumpTruckForm';
 import LoadallForm from './screens/Forms/Loadall/LoadallForm';
+import SelfErectingCraneForm from './screens/Forms/SelfErectingCrane/SelfErectingCrane';
 import Settings from './screens/Settings';
 
 class App extends React.Component {
@@ -57,6 +58,7 @@ class App extends React.Component {
       HomeScreen,
       ArticDumpTruckForm,
       LoadallForm,
+      SelfErectingCraneForm,
     }, {
       navigationOptions: headerOptions
     });

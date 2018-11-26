@@ -31,7 +31,7 @@ import {
   TyresAndWheels,
   AssessmentConclusion,
 } from './SelfErectingCraneIndex';
-import { LOADALL } from '../formTypes';
+import { SELF_ERECTING_CRANE } from '../formTypes';
 
 import {
   customersFetch,
@@ -39,7 +39,7 @@ import {
   formSubmit
 } from '../../../actions';
 
-class LoadallForm extends Component {
+class SelfErectingCraneForm extends Component {
   static navigationOptions = ({ navigation }) => {
     const exitAlert = () => {
       Alert.alert(
@@ -53,7 +53,7 @@ class LoadallForm extends Component {
   };
 
     return {
-      title: 'Loadall',
+      title: 'Self Erecting Crane',
       headerLeft: null,
       headerRight: (
         <TouchableOpacity onPress={() => exitAlert()}>
@@ -77,7 +77,7 @@ class LoadallForm extends Component {
 
   componentWillMount() {
     this.props.customersFetch();
-    this.props.setActiveForm({ formType: LOADALL });
+    this.props.setActiveForm({ formType: SELF_ERECTING_CRANE });
   }
 
   onSubmit = (formData) => {
@@ -317,4 +317,4 @@ export default connect(mapStateToProps, {
   setActiveForm,
   customersFetch,
   formSubmit
-})(LoadallForm);
+})(SelfErectingCraneForm);

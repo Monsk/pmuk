@@ -56,12 +56,21 @@ class BasicInfoForm2 extends Component {
         return basicForm;
     }
   }
-  
+
   render() {
     const options = {
     fields: {
       boom_length: {
-        label: 'Boom Length (m)'
+        label: 'Boom length (m)'
+      },
+      jib_height: {
+        label: 'Jib height (m)'
+      },
+      jib_length: {
+        label: 'Jib length (m)'
+      },
+      ballast: {
+        label: 'Ballast (kg)'
       },
       }
     };
