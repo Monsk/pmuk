@@ -12,20 +12,20 @@ import {
 import {
   BasicInfoForm,
   BasicInfoForm2,
-  ArticDumpTruck1,
-  ArticDumpTruck2,
-  ArticDumpTruck3,
-  ArticDumpTruck4,
-  ArticDumpTruck5,
-  ArticDumpTruck6,
-  ArticDumpTruck7,
-  ArticDumpTruck8,
-  ArticDumpTruck9,
-  ArticDumpTruck10,
+  AccessEgressFluids,
+  CoversWindows,
+  SeatBeltLightsHorn,
+  VisibilityAidsSignsDecals,
+  ControlLevers,
+  Steering,
+  Brakes,
+  Skip,
+  ArticJointChassis,
+  Axles,
   HydraulicCylinders,
   HydraulicHosesPipes,
   HoseRuptureValvesAndServos,
-  ArticDumpTruck14,
+  SuspensionTyresAndWheels,
   AssessmentConclusion,
 } from './ArticDumpTruckFormIndex';
 import { ARTIC_DUMP_TRUCK } from '../formTypes';
@@ -138,7 +138,7 @@ class ArticDumpTruckForm extends Component {
         );
       case 3:
         return (
-          <ArticDumpTruck1
+          <AccessEgressFluids
             value={this.state.formData}
             onSubmit={this.onSubmit}
             onBack={this.goBack.bind(this)}
@@ -146,7 +146,7 @@ class ArticDumpTruckForm extends Component {
         );
       case 4:
         return (
-          <ArticDumpTruck2
+          <CoversWindows
             value={this.state.formData}
             onSubmit={this.onSubmit}
             onBack={this.goBack.bind(this)}
@@ -154,7 +154,7 @@ class ArticDumpTruckForm extends Component {
         );
       case 5:
         return (
-          <ArticDumpTruck3
+          <SeatBeltLightsHorn
             value={this.state.formData}
             onSubmit={this.onSubmit}
             onBack={this.goBack.bind(this)}
@@ -162,7 +162,7 @@ class ArticDumpTruckForm extends Component {
         );
       case 6:
         return (
-          <ArticDumpTruck4
+          <VisibilityAidsSignsDecals
             value={this.state.formData}
             onSubmit={this.onSubmit}
             onBack={this.goBack.bind(this)}
@@ -170,7 +170,7 @@ class ArticDumpTruckForm extends Component {
         );
       case 7:
         return (
-          <ArticDumpTruck5
+          <ControlLevers
             value={this.state.formData}
             onSubmit={this.onSubmit}
             onBack={this.goBack.bind(this)}
@@ -178,7 +178,7 @@ class ArticDumpTruckForm extends Component {
         );
       case 8:
         return (
-          <ArticDumpTruck6
+          <Steering
             value={this.state.formData}
             onSubmit={this.onSubmit}
             onBack={this.goBack.bind(this)}
@@ -186,7 +186,7 @@ class ArticDumpTruckForm extends Component {
         );
       case 9:
         return (
-          <ArticDumpTruck7
+          <Brakes
             value={this.state.formData}
             onSubmit={this.onSubmit}
             onBack={this.goBack.bind(this)}
@@ -194,7 +194,7 @@ class ArticDumpTruckForm extends Component {
         );
       case 10:
         return (
-          <ArticDumpTruck8
+          <Skip
             value={this.state.formData}
             onSubmit={this.onSubmit}
             onBack={this.goBack.bind(this)}
@@ -202,7 +202,7 @@ class ArticDumpTruckForm extends Component {
         );
       case 11:
         return (
-          <ArticDumpTruck9
+          <ArticJointChassis
             value={this.state.formData}
             onSubmit={this.onSubmit}
             onBack={this.goBack.bind(this)}
@@ -210,7 +210,7 @@ class ArticDumpTruckForm extends Component {
         );
       case 12:
         return (
-          <ArticDumpTruck10
+          <Axles
             value={this.state.formData}
             onSubmit={this.onSubmit}
             onBack={this.goBack.bind(this)}
@@ -242,7 +242,7 @@ class ArticDumpTruckForm extends Component {
         );
       case 16:
         return (
-          <ArticDumpTruck14
+          <SuspensionTyresAndWheels
             value={this.state.formData}
             onSubmit={this.onSubmit}
             onBack={this.goBack.bind(this)}

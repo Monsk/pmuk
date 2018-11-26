@@ -8,42 +8,42 @@ import { NavButtons } from '../../../components/NavButtons';
 
 const Form = t.form.Form;
 
-class ArticDumpTruck1 extends Component {
+class ArticJointChassis extends Component {
   constructor(props) {
     super(props);
     this.state = {
       value: {
-        accessAndEgress: {
-          corrosion: false,
-          wear: false,
-          modification: false,
+        articJoint: {
+          noExcessiveFreeplay: false,
+          jointFixingsSecure: false,
+          adequatelyLubricated: false,
+          damageToJoint: false,
         },
-        fluids: {
-          levels: false,
-          contamination: false,
-          upToDate: false,
+        chassis: {
+          freeFromCracks: false,
+          freeFromNonApprovedRepair: false,
         },
         ...this.props.value
       }
     };
   }
 
-  renderAccessEgressForm() {
+  renderArticJointForm() {
     return (
       t.struct({
-        corrosion: t.Boolean,
-        wear: t.Boolean,
-        modification: t.Boolean,
+        noExcessiveFreeplay: t.Boolean,
+        jointFixingsSecure: t.Boolean,
+        adequatelyLubricated: t.Boolean,
+        damageToJoint: t.Boolean,
       })
     );
   }
 
-  renderFluidsForm() {
+  renderChassisForm() {
     return (
       t.struct({
-        levels: t.Boolean,
-        contamination: t.Boolean,
-        upToDate: t.Boolean,
+        freeFromCracks: t.Boolean,
+        freeFromNonApprovedRepair: t.Boolean,
       })
     );
   }
@@ -51,24 +51,24 @@ class ArticDumpTruck1 extends Component {
   render() {
     const options = {
     fields: {
-      corrosion: {
-        label: 'Access steps and handrails secure and free from damage and excessive corrosion'
+      noExcessiveFreeplay: {
+        label: 'Articulation joint does not have excessive freeplay'
       },
-      wear: {
-        label: 'Treads on access steps free from excessive wear'
+      jointFixingsSecure: {
+        label: 'Articulation joint fixings secure'
       },
-      modification: {
-        label: 'Access steps or handrails free from any non-approved repair or modification'
+      adequatelyLubricated: {
+        label: 'Articulation joint adequately lubricated'
       },
-      levels: {
-        label: 'Fluid levels correct, e.g. engine oil, coolant, hydraulic oil, etc.'
+      damageToJoint: {
+        label: 'Evidence of damage to articulation joint'
       },
-      contamination: {
-        label: 'Fluids for evidence of contamination, e.g. water in oil, etc.'
+      freeFromCracks: {
+        label: 'Chassis free from cracks, damage and excessive corrosion'
       },
-      upToDate: {
-        label: 'Machine servicing up to date'
-      }
+      freeFromNonApprovedRepair: {
+        label: 'Chassis free from any non-approved repair or modification'
+      },
       }
     };
 
@@ -76,30 +76,30 @@ class ArticDumpTruck1 extends Component {
       <View style={styles.form}>
         <KeyboardAwareScrollView>
           <View style={styles.container}>
-            <Text style={styles.h2}>Access & Egress</Text>
+            <Text style={styles.h2}>Articulation Joint</Text>
           </View>
           <View style={styles.container}>
             <Form
-              ref="accessAndEgress"
-              value={this.state.value.accessAndEgress}
-              type={this.renderAccessEgressForm()}
+              ref="articJoint"
+              value={this.state.value.articJoint}
+              type={this.renderArticJointForm()}
               options={options}
               onChange={obj => this.setState({
-                value: { ...this.state.value, accessAndEgress: { ...obj } } }
+                value: { ...this.state.value, articJoint: { ...obj } } }
               )}
             />
           </View>
           <View style={styles.container}>
-            <Text style={styles.h2}>Oil & Other Fluids</Text>
+            <Text style={styles.h2}>Chassis</Text>
           </View>
           <View style={styles.container}>
             <Form
-              ref="fluids"
-              value={this.state.value.fluids}
-              type={this.renderFluidsForm()}
+              ref="articJoint"
+              value={this.state.value.chassis}
+              type={this.renderChassisForm()}
               options={options}
               onChange={obj => this.setState({
-                value: { ...this.state.value, fluids: { ...obj } } }
+                value: { ...this.state.value, chassis: { ...obj } } }
               )}
             />
           </View>
@@ -135,4 +135,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default ArticDumpTruck1;
+export default ArticJointChassis;

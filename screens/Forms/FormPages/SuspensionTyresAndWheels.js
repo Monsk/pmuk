@@ -8,7 +8,7 @@ import { NavButtons } from '../../../components/NavButtons';
 
 const Form = t.form.Form;
 
-class ArticDumpTruck14 extends Component {
+class SuspensionTyresAndWheels extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -140,4 +140,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default ArticDumpTruck14;
+export default SuspensionTyresAndWheels;
